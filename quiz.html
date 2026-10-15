@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Cybersecurity Awareness and Learning Portal
+       Interactive Cybersecurity Knowledge Quiz
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Awareness Quiz | CyberAware Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html" class="active nav-quiz-btn">Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+    <header>
+      <h1 class="page-title">Interactive Cybersecurity <span class="highlight">Knowledge Quiz</span></h1>
+      <p class="page-subtitle">
+        Assess your digital instincts and defensive readiness. 
+        Answer the 5 multiple-choice questions below to receive immediate feedback, detailed security explanations, and your verified score badge.
+      </p>
+    </header>
+
+    <!-- Quiz Form -->
+    <form id="quizForm">
+      <!-- Container where quiz questions are dynamically rendered by js/quiz.js -->
+      <div id="questionsContainer"></div>
+
+      <div style="margin: 2rem 0; text-align: center;">
+        <button type="submit" class="btn btn-primary" style="padding: 0.85rem 2.5rem; font-size: 1.1rem;">
+          Submit Quiz &amp; Calculate Score &rarr;
+        </button>
+      </div>
+    </form>
+
+    <!-- Result Card (Hidden until submitted) -->
+    <div id="resultCard" class="card" style="display: none; border: 2px solid var(--accent-cyan); text-align: center; padding: 2.5rem 1.5rem; background: #0c1424; margin-bottom: 2rem;">
+      <h2 style="color: var(--accent-cyan); font-size: 1.8rem;">Quiz Performance Evaluation</h2>
+      <p id="scoreText" style="font-size: 1.35rem; margin: 1.2rem 0; font-weight: 700; color: #fff;"></p>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <span id="scoreBadge" class="badge" style="font-size: 1.05rem; padding: 0.5rem 1.4rem;"></span>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 600px; margin: 0 auto 1.5rem;">
+        Scroll up to review the detailed explanations for any questions you may have missed. Understanding why an answer is correct strengthens your real-world online safety instincts!
+      </p>
+
+      <div>
+        <button id="retakeBtn" class="btn btn-outline" style="padding: 0.6rem 1.6rem;">
+          🔄 Retake Quiz
+        </button>
+        <a href="learn.html" class="btn btn-primary" style="margin-left: 0.6rem; padding: 0.6rem 1.6rem;">
+          Explore Interactive Learning &rarr;
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4 style="color: var(--accent-cyan);">🛡️ CyberAware Portal</h4>
+        <p style="margin-top: 0.6rem; color: var(--text-muted); line-height: 1.6;">
+          An open educational resource dedicated to demystifying cybersecurity threats and teaching defense-in-depth principles for digital citizens.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Interactive Learning</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Safety Quiz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Defense Tools</h4>
+        <ul class="footer-links">
+          <li><a href="resources.html">Password Strength Tester</a></li>
+          <li><a href="learn.html#phishing-sim">Phishing Simulator</a></li>
+          <li><a href="safety-tips.html">Advisories Feed</a></li>
+          <li><a href="quiz.html">Quiz Assessment</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cybersecurity Awareness and Learning Portal. All rights reserved.</p>
+      <div>
+        <a href="practicals.html" class="footer-wtl-link" title="Web Technology Laboratory Practicals & Viva Guide">
+          🧪 WTL Practicals
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Link Quiz JavaScript File -->
+  <script src="js/quiz.js"></script>
+
+</body>
+</html>

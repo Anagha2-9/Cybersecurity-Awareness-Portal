@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Enable Multi-Factor Authentication (MFA)",
+    "category": "Account Security",
+    "description": "Multi-factor authentication adds an extra defensive layer. Even if your password is leaked, attackers cannot access your account without the second factor (e.g., authenticator app or hardware key)."
+  },
+  {
+    "id": 2,
+    "title": "Practice the 3-2-1 Backup Strategy",
+    "category": "Data Protection",
+    "description": "Keep at least 3 copies of your important data: on 2 different media formats (e.g., internal drive and external SSD), with at least 1 copy kept off-site or in secure cloud storage."
+  },
+  {
+    "id": 3,
+    "title": "Inspect URL Links Before Clicking",
+    "category": "Phishing Prevention",
+    "description": "Hover over hyperlinks to verify the actual destination URL. Attackers frequently use typosquatting domains like 'arnazon.com' or 'paypa1.com' to trick victims."
+  },
+  {
+    "id": 4,
+    "title": "Never Reuse Passwords Across Websites",
+    "category": "Credential Security",
+    "description": "When a minor website suffers a credential breach, hackers attempt credential stuffing on banking, email, and social media accounts. Use a reputable password manager."
+  },
+  {
+    "id": 5,
+    "title": "Keep Operating Systems & Firmware Patched",
+    "category": "Vulnerability Management",
+    "description": "Security patches fix known vulnerabilities (CVEs) that attackers actively exploit. Turn on automatic security updates for your OS, browser, and home router."
+  }
+]

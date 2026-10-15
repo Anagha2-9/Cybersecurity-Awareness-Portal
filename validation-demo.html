@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Practical 07: JavaScript Frontend Functionality and Form Validation
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical 07: JS Frontend Validation | CyberAware Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="practicals.html" class="active highlight-btn">🧪 Examiner Hub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <header>
+      <span class="badge badge-info">Practical 07</span>
+      <h1 class="page-title">JavaScript Frontend Functionality &amp; Form Validation</h1>
+      <p class="page-subtitle">
+        Demonstrates client-side JavaScript form validation using regular expressions, <code>event.preventDefault()</code>, 
+        real-time inline error handling, and dynamic success token generation.
+      </p>
+    </header>
+
+    <div class="two-col-grid">
+      
+      <!-- Interactive Form Container -->
+      <section class="card">
+        <h3>Cyber Incident &amp; Hygiene Registration Form</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem;">
+          Try submitting invalid or blank inputs to see real-time regex validation rules:
+        </p>
+
+        <form id="pledgeForm" novalidate>
+          
+          <div class="form-group">
+            <label for="fullName">Full Name <span style="color: var(--accent-red);">*</span></label>
+            <input type="text" id="fullName" name="fullName" class="form-control" placeholder="e.g. Alex Johnson (Min 3 letters)">
+            <span id="fullNameError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span style="color: var(--accent-red);">*</span></label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="e.g. alex@college.edu">
+            <span id="emailError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">10-Digit Mobile Number <span style="color: var(--accent-red);">*</span></label>
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="e.g. 9876543210 (10 digits)">
+            <span id="phoneError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Affiliation Role <span style="color: var(--accent-red);">*</span></label>
+            <select id="category" name="category" class="form-control">
+              <option value="">-- Select Your Role --</option>
+              <option value="Student">College Student</option>
+              <option value="Faculty">Faculty / Teacher</option>
+              <option value="Security Researcher">Security Researcher</option>
+            </select>
+            <span id="categoryError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" id="agreePledge" name="agreePledge" style="margin-top: 0.3rem;">
+              <span>I confirm all information entered is accurate and pledge responsible cyber conduct.</span>
+            </label>
+            <span id="pledgeError" class="error-message"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Validate &amp; Submit Registration &rarr;
+          </button>
+        </form>
+
+        <div id="formStatus"></div>
+      </section>
+
+      <!-- Explanation Panel -->
+      <section class="card">
+        <h3>🔍 Validation Rules &amp; Regular Expressions</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">
+          The JavaScript code in <code>js/validation.js</code> enforces the following pattern rules:
+        </p>
+
+        <div style="background: var(--bg-primary); padding: 1rem; border-radius: 6px; margin-top: 1rem;">
+          <strong style="color: var(--accent-cyan);">1. Name Pattern:</strong>
+          <code style="display: block; color: #a7f3d0; margin: 0.2rem 0;">/^[A-Za-z\s]{3,}$/</code>
+          <small style="color: var(--text-muted);">Letters and spaces only, minimum 3 characters.</small>
+        </div>
+
+        <div style="background: var(--bg-primary); padding: 1rem; border-radius: 6px; margin-top: 0.8rem;">
+          <strong style="color: var(--accent-cyan);">2. Email Pattern:</strong>
+          <code style="display: block; color: #a7f3d0; margin: 0.2rem 0;">/^[^\s@]+@[^\s@]+\.[^\s@]+$/</code>
+          <small style="color: var(--text-muted);">Ensures standard username@domain.extension format.</small>
+        </div>
+
+        <div style="background: var(--bg-primary); padding: 1rem; border-radius: 6px; margin-top: 0.8rem;">
+          <strong style="color: var(--accent-cyan);">3. Mobile Pattern:</strong>
+          <code style="display: block; color: #a7f3d0; margin: 0.2rem 0;">/^[0-9]{10}$/</code>
+          <small style="color: var(--text-muted);">Exact 10 numerical digits.</small>
+        </div>
+
+        <div style="margin-top: 1.5rem; border-top: 1px solid var(--bg-tertiary); padding-top: 1rem;">
+          <a href="quiz.html" class="btn btn-outline" style="width: 100%; text-align: center;">
+            🎯 Also explore JavaScript Quiz Logic (quiz.html) &rarr;
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Cybersecurity Awareness and Learning Portal | Practical 07: JavaScript Form Validation</p>
+  </footer>
+
+  <script src="js/validation.js"></script>
+
+</body>
+</html>

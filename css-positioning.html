@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Practical 05: CSS Positioning and Properties
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical 05: CSS Positioning & Properties | CyberAware Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <style>
+    /* Styling specifically for Practical 05 positioning demonstrations */
+    .position-stage {
+      background: var(--bg-primary);
+      border: 1px solid var(--bg-tertiary);
+      border-radius: 8px;
+      padding: 1.5rem;
+      min-height: 180px;
+      position: relative; /* Containing block for absolute children */
+      margin-top: 1rem;
+    }
+
+    /* 1. Static Positioning (Default) */
+    .box-static {
+      position: static;
+      background: #334155;
+      padding: 0.8rem;
+      border-radius: 4px;
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+    }
+
+    /* 2. Relative Positioning (Offset from normal flow) */
+    .box-relative {
+      position: relative;
+      top: 12px;
+      left: 20px;
+      background: #0284c7;
+      padding: 0.8rem;
+      border-radius: 4px;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.4);
+    }
+
+    /* 3. Absolute Positioning (Positioned relative to .position-stage) */
+    .box-absolute {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #dc2626;
+      padding: 0.6rem 1rem;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(220, 38, 38, 0.4);
+    }
+
+    /* 4. Sticky Positioning */
+    .box-sticky {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 75px; /* Sticks right below main navbar when scrolling */
+      background: #065f46;
+      border: 1px solid #10b981;
+      padding: 0.8rem 1.2rem;
+      border-radius: 6px;
+      color: #a7f3d0;
+      font-weight: bold;
+      z-index: 90;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      margin-bottom: 1.5rem;
+    }
+
+    /* 5. Fixed Positioning (Fixed to bottom right of viewport) */
+    .box-fixed {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #7c3aed;
+      color: #ffffff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 30px;
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.5);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .box-fixed:hover {
+      background: #6d28d9;
+    }
+
+    /* 6. Z-Index Overlap Stacking */
+    .z-box {
+      width: 120px;
+      height: 90px;
+      position: absolute;
+      border-radius: 6px;
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    .z-box-1 {
+      top: 30px;
+      left: 30px;
+      background: #0d9488;
+      z-index: 1; /* Lowest */
+    }
+    .z-box-2 {
+      top: 55px;
+      left: 70px;
+      background: #d97706;
+      z-index: 2; /* Middle */
+    }
+    .z-box-3 {
+      top: 80px;
+      left: 110px;
+      background: #e11d48;
+      z-index: 3; /* Highest - on top */
+    }
+
+    /* 7. Float, Clear & Overflow */
+    .float-example-img {
+      float: left;
+      margin-right: 1.2rem;
+      margin-bottom: 0.8rem;
+      background: var(--bg-tertiary);
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--accent-cyan);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="practicals.html" class="active highlight-btn">🧪 Examiner Hub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+    
+    <header>
+      <span class="badge badge-info">Practical 05</span>
+      <h1 class="page-title">CSS Positioning &amp; Properties Showcase</h1>
+      <p class="page-subtitle">
+        Visual demonstrations of CSS positioning schemes (<code>static</code>, <code>relative</code>, <code>absolute</code>, <code>fixed</code>, <code>sticky</code>), 
+        stacking contexts with <code>z-index</code>, and properties like <code>float</code>, <code>clear</code>, <code>overflow</code>, and <code>opacity</code>.
+      </p>
+    </header>
+
+    <!-- 1. STICKY POSITIONING DEMO (Sticks to top as user scrolls) -->
+    <div class="box-sticky flex-between">
+      <span>📌 Live Sticky Header: <code>position: sticky; top: 75px;</code></span>
+      <small style="color: #6ee7b7;">Notice how this bar remains stuck beneath the navbar while scrolling down!</small>
+    </div>
+
+    <!-- 2. STATIC, RELATIVE, & ABSOLUTE POSITIONING -->
+    <div class="two-col-grid">
+      
+      <!-- Static vs Relative -->
+      <section class="card">
+        <h3>1. Static &amp; Relative Positioning</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem;">
+          <code>static</code> is the normal default flow. <code>relative</code> offsets the element without affecting sibling positions:
+        </p>
+
+        <div class="position-stage" style="min-height: 190px;">
+          <div class="box-static">
+            <strong>Static Element 1:</strong> Default document flow (top/left offsets have no effect).
+          </div>
+          <div class="box-relative">
+            <strong>Relative Element:</strong> Offset by <code>top: 12px; left: 20px;</code> relative to its original position!
+          </div>
+        </div>
+      </section>
+
+      <!-- Absolute Positioning -->
+      <section class="card">
+        <h3>2. Absolute Positioning</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem;">
+          <code>absolute</code> removes element from document flow and positions it relative to its closest positioned ancestor:
+        </p>
+
+        <div class="position-stage">
+          <p style="color: var(--text-muted);">
+            Parent Container has <code>position: relative;</code>
+          </p>
+          <div class="box-absolute">
+            🚨 Absolute Badge: <code>top: 15px; right: 15px;</code>
+          </div>
+          <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+            This red emergency badge stays anchored to the top-right corner of this card regardless of other sibling content.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 3. Z-INDEX AND FLOAT PROPERTIES -->
+    <div class="two-col-grid">
+      
+      <!-- Z-Index Stacking Context -->
+      <section class="card">
+        <h3>3. Stacking Context (<code>z-index</code>)</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem;">
+          Controls layer order along the 3D Z-axis. Higher <code>z-index</code> values render on top:
+        </p>
+
+        <div class="position-stage" style="height: 180px;">
+          <div class="z-box z-box-1">
+            Layer 1<br><code>z-index: 1</code>
+          </div>
+          <div class="z-box z-box-2">
+            Layer 2<br><code>z-index: 2</code>
+          </div>
+          <div class="z-box z-box-3">
+            Layer 3 (Top)<br><code>z-index: 3</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Float, Clear & Overflow -->
+      <section class="card">
+        <h3>4. Float, Clear &amp; Overflow</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.3rem;">
+          Demonstrating text wrapping around a floated security icon and clear handling:
+        </p>
+
+        <div class="position-stage" style="overflow: auto;">
+          <div class="float-example-img">
+            🛡️ Floated Icon<br><code>float: left;</code>
+          </div>
+          <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
+            This paragraph text dynamically flows and wraps around the floated box to the left. 
+            Floated elements were traditionally used for newspaper-style layouts. The container uses <code>overflow: auto</code> to form a clearfix block preventing layout collapse.
+          </p>
+          <div style="clear: both; margin-top: 0.8rem; font-size: 0.8rem; color: var(--accent-cyan);">
+            &uarr; Cleared using <code>clear: both;</code>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Extra space to demonstrate scrolling and sticky/fixed behaviors -->
+    <section class="card" style="margin-top: 1.5rem;">
+      <h3>5. Fixed Positioning (<code>position: fixed</code>)</h3>
+      <p style="color: var(--text-muted);">
+        Look at the <strong>bottom-right corner of your browser screen</strong>. 
+        You will see the purple floating pill: <strong>"📞 Cyber Hotline (Fixed)"</strong>. 
+        It has <code>position: fixed; bottom: 25px; right: 25px;</code> and stays locked in place even when you scroll up or down!
+      </p>
+    </section>
+
+  </main>
+
+  <!-- 4. FIXED POSITION ELEMENT (Locked to viewport) -->
+  <a href="#top" class="box-fixed" title="Practical 05: Demonstrates position: fixed">
+    <span>📞 Cyber Helpline (Fixed)</span>
+  </a>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Cybersecurity Awareness and Learning Portal | Practical 05: CSS Positioning and Properties</p>
+  </footer>
+
+</body>
+</html>

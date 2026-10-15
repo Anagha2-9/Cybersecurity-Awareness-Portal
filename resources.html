@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Cybersecurity Awareness and Learning Portal
+       Practical 11: DOM Manipulation & Event Handling (WTL Syllabus Preserved)
+       Beginner Resources, Security Glossary & Interactive Diagnostic Tools
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cybersecurity Resources & Diagnostic Tools | CyberAware Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html" class="active">Resources</a></li>
+          <li><a href="quiz.html" class="nav-quiz-btn">Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <header>
+      <h1 class="page-title">Cybersecurity <span class="highlight">Resources &amp; Diagnostic Tools</span></h1>
+      <p class="page-subtitle">
+        Test your password resilience in real time, explore interactive answers to critical security questions, and access curated guides for beginners.
+      </p>
+    </header>
+
+    <div class="two-col-grid">
+      
+      <!-- Interactive Tool 1: Password Strength & Entropy Tester -->
+      <section class="card" style="border-left: 4px solid var(--accent-cyan);">
+        <h3>🔑 Password Entropy &amp; Strength Tester</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
+          Type a sample password below. Real-time JavaScript DOM events evaluate length, character diversity, and cryptographic entropy:
+        </p>
+
+        <div class="form-group" style="margin-top: 1.2rem;">
+          <label for="passwordInput">Test a Sample Password:</label>
+          <input type="text" id="passwordInput" class="form-control" placeholder="e.g. correct horse battery staple / S3cur3!2026">
+        </div>
+
+        <!-- Strength Indicator Bar -->
+        <div style="background-color: var(--bg-tertiary); height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 0.8rem;">
+          <div id="strengthMeter" style="height: 100%; width: 0%; background-color: #94a3b8; transition: width 0.3s ease, background-color 0.3s ease;"></div>
+        </div>
+
+        <!-- Descriptive Feedback -->
+        <div id="strengthFeedback" style="font-weight: 600; font-size: 0.95rem; color: #94a3b8;">
+          Enter a password to evaluate strength
+        </div>
+
+        <div style="margin-top: 1.2rem; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--bg-tertiary); padding-top: 0.8rem;">
+          💡 <strong>Entropy Rule:</strong> Passwords consisting of 4 random dictionary words with spaces (e.g. <code>purple elephant dances fast</code>) are easier for humans to remember but exponentially harder for computers to brute force!
+        </div>
+      </section>
+
+      <!-- Recommended Free Security Tools & Verification Portals -->
+      <section class="card" style="border-left: 4px solid var(--accent-green);">
+        <h3>🌐 Curated External Defense Resources</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
+          Industry-standard free resources recommended for every internet user:
+        </p>
+
+        <div style="margin-top: 1rem; line-height: 1.8;">
+          <div style="margin-bottom: 0.8rem;">
+            <a href="https://haveibeenpwned.com" target="_blank" rel="noopener" style="color: var(--accent-cyan); font-weight: bold; text-decoration: none;">
+              🔍 Have I Been Pwned? &rarr;
+            </a>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Check if your email or username has been exposed in public corporate data breaches.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 0.8rem;">
+            <a href="https://www.cisa.gov/cyber-guidance-small-businesses" target="_blank" rel="noopener" style="color: var(--accent-cyan); font-weight: bold; text-decoration: none;">
+              🛡️ CISA Cyber Guidance &rarr;
+            </a>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Official security alerts, incident guidelines, and hygiene best practices from CISA.
+            </p>
+          </div>
+
+          <div>
+            <a href="https://ssd.eff.org" target="_blank" rel="noopener" style="color: var(--accent-cyan); font-weight: bold; text-decoration: none;">
+              📖 EFF Surveillance Self-Defense &rarr;
+            </a>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Comprehensive privacy guides on safe messaging, threat modeling, and encryption.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Interactive Tool 2: Security FAQ Accordion Component (DOM click event) -->
+    <section class="card" style="margin-top: 2rem;">
+      <div class="flex-between">
+        <div>
+          <h2>Frequently Asked Questions on Cyber Defense</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.2rem;">
+            Click any question to toggle the interactive response panel:
+          </p>
+        </div>
+        <span class="badge badge-info">Interactive Accordions</span>
+      </div>
+
+      <div style="margin-top: 1.2rem;">
+        
+        <div class="accordion-item">
+          <button class="accordion-btn">What should I do immediately if I suspect a Phishing email?</button>
+          <div class="accordion-content">
+            <p style="color: var(--text-muted); margin: 0.8rem 0; line-height: 1.6;">
+              1. <strong>Do NOT click any links, open attachments, or reply to the email.</strong><br>
+              2. Forward the suspicious email to your institution's IT helpdesk or security operations center.<br>
+              3. If you accidentally clicked a link and entered credentials, immediately change your password from another known clean device and notify your administrators.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn">How does Two-Factor Authentication (2FA) stop unauthorized logins?</button>
+          <div class="accordion-content">
+            <p style="color: var(--text-muted); margin: 0.8rem 0; line-height: 1.6;">
+              Two-Factor Authentication requires two distinct authentication factors: something you <em>know</em> (your password) plus something you <em>have</em> (an authenticator app on your smartphone or a physical security key). 
+              Even if attackers purchase your leaked password on the dark web, they cannot access your account without physical access to your second factor.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn">Why are public Wi-Fi networks inherently risky?</button>
+          <div class="accordion-content">
+            <p style="color: var(--text-muted); margin: 0.8rem 0; line-height: 1.6;">
+              Open public Wi-Fi networks do not require credentials to join, which means malicious actors on the same network can intercept unencrypted network packets or deploy "Evil Twin" fake hotspots to intercept sensitive browsing data. Always ensure websites use HTTPS or tunnel your traffic through a trusted VPN.
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-btn">What is the difference between symmetric and asymmetric encryption?</button>
+          <div class="accordion-content">
+            <p style="color: var(--text-muted); margin: 0.8rem 0; line-height: 1.6;">
+              <strong>Symmetric encryption</strong> (such as AES) uses the same secret key to both encrypt and decrypt data—fast and ideal for bulk file storage. 
+              <strong>Asymmetric encryption</strong> (such as RSA or ECC) uses a mathematically linked key pair: a public key for encryption and a private key for decryption, which forms the backbone of secure internet traffic via HTTPS/TLS.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Essential Security Terminology Glossary Table -->
+    <section class="card" style="margin-top: 2rem;">
+      <h2>Essential Cybersecurity Glossary for Beginners</h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem;">
+        Key terminology every student and digital citizen should recognize:
+      </p>
+
+      <div style="overflow-x: auto; margin-top: 1rem;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Term</th>
+              <th>Category</th>
+              <th>Plain-English Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Zero-Day Vulnerability</strong></td>
+              <td><span class="badge badge-danger">Threat</span></td>
+              <td>A software flaw unknown to the vendor, for which zero days of patching exist.</td>
+            </tr>
+            <tr>
+              <td><strong>Multi-Factor Authentication (MFA)</strong></td>
+              <td><span class="badge badge-success">Defense</span></td>
+              <td>Requiring two or more verification proofs before granting access to an account.</td>
+            </tr>
+            <tr>
+              <td><strong>Credential Stuffing</strong></td>
+              <td><span class="badge badge-warning">Attack</span></td>
+              <td>Automated testing of stolen username/password pairs across hundreds of websites.</td>
+            </tr>
+            <tr>
+              <td><strong>Brute-Force Attack</strong></td>
+              <td><span class="badge badge-warning">Attack</span></td>
+              <td>Submitting millions of password combinations until the correct one is discovered.</td>
+            </tr>
+            <tr>
+              <td><strong>Virtual Private Network (VPN)</strong></td>
+              <td><span class="badge badge-info">Privacy</span></td>
+              <td>An encrypted tunnel connecting your device to a remote server across public networks.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4 style="color: var(--accent-cyan);">🛡️ CyberAware Portal</h4>
+        <p style="margin-top: 0.6rem; color: var(--text-muted); line-height: 1.6;">
+          An open educational resource dedicated to demystifying cybersecurity threats and teaching defense-in-depth principles for digital citizens.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Interactive Learning</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Safety Quiz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Defense Tools</h4>
+        <ul class="footer-links">
+          <li><a href="resources.html">Password Strength Tester</a></li>
+          <li><a href="learn.html#phishing-sim">Phishing Simulator</a></li>
+          <li><a href="safety-tips.html">Security Advisories</a></li>
+          <li><a href="quiz.html">Quiz Assessment</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cybersecurity Awareness and Learning Portal. All rights reserved.</p>
+      <div>
+        <a href="practicals.html" class="footer-wtl-link" title="Web Technology Laboratory Practicals & Viva Guide">
+          🧪 WTL Practicals
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts for Practical 05/11 DOM Events (Password Strength & Accordion) -->
+  <script src="js/dom-events.js"></script>
+
+</body>
+</html>

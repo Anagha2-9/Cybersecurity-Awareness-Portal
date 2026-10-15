@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Practical 10: Fetch API and JSON Data
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical 10: Fetch API & JSON Data | CyberAware Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="practicals.html" class="active highlight-btn">🧪 Examiner Hub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <header>
+      <span class="badge badge-info">Practical 10</span>
+      <h1 class="page-title">Asynchronous Fetch API &amp; JSON Data Handling</h1>
+      <p class="page-subtitle">
+        Demonstrates modern JavaScript <strong>Fetch API</strong>, Promises, <strong>async/await</strong>, 
+        reading structured <strong>JSON</strong> data from <code>data/tips.json</code>, and dynamic DOM rendering with error handling.
+      </p>
+    </header>
+
+    <div class="two-col-grid">
+      
+      <!-- Random Tip Box Loaded via Fetch API -->
+      <section class="card">
+        <div class="flex-between">
+          <h3>💡 Asynchronous Advisory of the Day</h3>
+          <button id="randomTipBtn" class="btn btn-outline" style="padding: 0.3rem 0.8rem; font-size: 0.85rem;">
+            🔄 Load Random Tip
+          </button>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
+          Fetched asynchronously via <code>fetch('data/tips.json')</code>:
+        </p>
+
+        <div id="randomTipBox" style="margin-top: 1rem;">
+          <p style="color: var(--text-muted);">Fetching tip from JSON data source...</p>
+        </div>
+      </section>
+
+      <!-- Code Explanation Box -->
+      <section class="card">
+        <h3>How Fetch API Works</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.3rem;">
+          Modern asynchronous pattern using <code>async/await</code>:
+        </p>
+
+        <pre style="background: var(--bg-primary); padding: 1rem; border-radius: 6px; color: var(--accent-cyan); font-family: var(--font-mono); font-size: 0.85rem; overflow-x: auto; margin-top: 0.8rem; border: 1px solid var(--bg-tertiary);">
+async function loadTips() {
+  try {
+    const res = await fetch('data/tips.json');
+    if (!res.ok) throw new Error(res.status);
+    const data = await res.json();
+    renderData(data);
+  } catch (error) {
+    console.error('Fetch error:', error);
+  }
+}</pre>
+      </section>
+
+    </div>
+
+    <!-- All Tips Loaded via Fetch API -->
+    <section class="card" style="margin-top: 1.5rem;">
+      <div class="flex-between">
+        <h3>📋 All Advisories Loaded from JSON Dataset</h3>
+        <span class="badge badge-success">Loaded via data/tips.json</span>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
+        Parsed from raw JSON text into JavaScript Objects and injected into the DOM:
+      </p>
+
+      <div id="tipsContainer" style="margin-top: 1rem;">
+        <!-- Dynamically populated by js/fetch-tips.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+      <p>&copy; 2026 Cybersecurity Awareness and Learning Portal | Practical 10: Fetch API &amp; JSON Data</p>
+      <div>
+        <a href="practicals.html" class="footer-wtl-link" title="Web Technology Laboratory Practicals & Viva Guide">
+          🧪 WTL Practicals Hub
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/fetch-tips.js"></script>
+
+</body>
+</html>

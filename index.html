@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Cybersecurity Awareness and Learning Portal
+       Practical 01: HTML Headings, Lists and Images (WTL Syllabus Preserved)
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberAware | Cybersecurity Awareness & Learning Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html" class="nav-quiz-btn">Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="container">
+    
+    <!-- Hero Section -->
+    <section class="hero-card">
+      <div class="hero-content">
+        <div>
+          <div class="hero-badge">
+            <span>🛡️ Essential Digital Defense for Beginners</span>
+          </div>
+          <!-- Heading 1 (Highest Level Heading) -->
+          <h1 class="hero-title">Stay Safe in a <span>Digital World.</span></h1>
+          <p class="hero-text">
+            Every day, thousands of students, professionals, and internet users fall victim to phishing emails, credential leaks, and malicious software. 
+            Cybersecurity is no longer just for engineers—it is a vital life skill. Learn how modern threats operate, build daily digital habits, and protect your digital identity with our beginner-friendly guides.
+          </p>
+          <div class="hero-actions">
+            <a href="learn.html" class="btn btn-primary">Start Learning &rarr;</a>
+            <a href="threats.html" class="btn btn-outline">Explore Cyber Threats</a>
+            <a href="quiz.html" class="btn btn-success">Take the Quiz</a>
+          </div>
+        </div>
+
+        <!-- Demonstration of HTML Image with attributes (src, alt, width, height, title) -->
+        <div class="hero-illustration">
+          <img 
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240' width='220' height='220'><defs><linearGradient id='cyanGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%2306b6d4'/><stop offset='100%25' stop-color='%2310b981'/></linearGradient><radialGradient id='glow' cx='50%25' cy='50%25' r='50%25'><stop offset='0%25' stop-color='%2306b6d4' stop-opacity='0.3'/><stop offset='100%25' stop-color='transparent'/></radialGradient></defs><circle cx='120' cy='120' r='100' fill='url(%23glow)'/><polygon points='120,25 200,65 200,140 120,210 40,140 40,65' fill='%23111a2e' stroke='url(%23cyanGrad)' stroke-width='6'/><polygon points='120,45 180,75 180,135 120,190 60,135 60,75' fill='%23090e1a' stroke='rgba(6,182,212,0.3)' stroke-width='2'/><rect x='95' y='105' width='50' height='45' rx='6' fill='%2306b6d4'/><path d='M105,105 L105,85 C105,76 135,76 135,85 L135,105' fill='none' stroke='%2306b6d4' stroke-width='6' stroke-linecap='round'/><circle cx='120' cy='125' r='5' fill='%23090e1a'/><line x1='120' y1='130' x2='120' y2='140' stroke='%23090e1a' stroke-width='4' stroke-linecap='round'/><circle cx='120' cy='35' r='3' fill='%2310b981'/><circle cx='190' cy='75' r='3' fill='%2310b981'/><circle cx='50' cy='75' r='3' fill='%2310b981'/></svg>" 
+            alt="Cyber Defense Security Shield Illustration" 
+            title="Cyber Defense Shield - Protecting Digital Assets" 
+            width="220" 
+            height="220"
+          >
+          <p style="font-size: 0.85rem; color: var(--accent-cyan); margin-top: 0.6rem; font-weight: 600;">
+            Zero-Trust Defensive Architecture
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Cyber Threats Section -->
+    <div class="section-header">
+      <div>
+        <!-- Heading 2 -->
+        <h2>Common Cyber Threats</h2>
+        <p>Recognize the most common attack vectors used against everyday users.</p>
+      </div>
+      <a href="threats.html" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View All Threats &rarr;</a>
+    </div>
+
+    <div class="grid-container">
+      
+      <!-- Threat Card 1: Phishing -->
+      <article class="threat-card">
+        <div class="threat-card-header">
+          <div>
+            <div class="threat-icon">🎣</div>
+            <!-- Heading 3 -->
+            <h3>Phishing Attacks</h3>
+          </div>
+          <span class="badge badge-danger">High Risk</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          Deceptive emails, fake login portals, or fraudulent text messages designed to trick you into revealing passwords or payment details.
+        </p>
+        <div class="threat-detail-block">
+          <p class="warning-signs"><strong>Warning Sign:</strong> Urgent deadlines, unfamiliar sender domains, and fake account suspension warnings.</p>
+        </div>
+      </article>
+
+      <!-- Threat Card 2: Ransomware -->
+      <article class="threat-card">
+        <div class="threat-card-header">
+          <div>
+            <div class="threat-icon">🔒</div>
+            <!-- Heading 3 -->
+            <h3>Ransomware</h3>
+          </div>
+          <span class="badge badge-danger">Critical</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          Malware that encrypts your files and locks your computer, demanding an extortion payment to restore access to your irreplaceable data.
+        </p>
+        <div class="threat-detail-block">
+          <p class="prevention-rules"><strong>Primary Defense:</strong> Maintain automated offline backups using the 3-2-1 backup strategy.</p>
+        </div>
+      </article>
+
+      <!-- Threat Card 3: Password Attacks -->
+      <article class="threat-card">
+        <div class="threat-card-header">
+          <div>
+            <div class="threat-icon">🔑</div>
+            <!-- Heading 3 -->
+            <h3>Credential Attacks</h3>
+          </div>
+          <span class="badge badge-warning">Frequent</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          Automated brute-force guessing, credential stuffing from public data breaches, and dictionary attacks against weak or reused passwords.
+        </p>
+        <div class="threat-detail-block">
+          <p class="prevention-rules"><strong>Primary Defense:</strong> Use 14+ character passphrases, a password manager, and two-factor authentication (2FA).</p>
+        </div>
+      </article>
+
+      <!-- Threat Card 4: Social Engineering -->
+      <article class="threat-card">
+        <div class="threat-card-header">
+          <div>
+            <div class="threat-icon">🧠</div>
+            <!-- Heading 3 -->
+            <h3>Social Engineering</h3>
+          </div>
+          <span class="badge badge-danger">Psychological</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          Manipulating human psychology rather than exploiting software vulnerabilities, tricking victims into handing over OTPs and private credentials.
+        </p>
+        <div class="threat-detail-block">
+          <p class="warning-signs"><strong>Warning Sign:</strong> Callers claiming to be bank or college staff demanding immediate password resets.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Quick Online Safety Tips & Best Practices -->
+    <div class="section-header">
+      <div>
+        <!-- Heading 2 -->
+        <h2>Quick Online Safety Habits</h2>
+        <p>Simple, actionable steps you can apply immediately to secure your digital presence.</p>
+      </div>
+      <a href="safety-tips.html" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">All Safety Tips &rarr;</a>
+    </div>
+
+    <div class="two-col-grid">
+      
+      <!-- Unordered List (Demonstrating HTML <ul> & <li>) -->
+      <section class="card">
+        <!-- Heading 3 -->
+        <h3 style="color: var(--accent-cyan);">Essential Cyber Hygiene Checklist</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0.4rem 0 1rem;">
+          Implement these foundational rules across your personal and academic accounts:
+        </p>
+        <ul style="margin-left: 1.5rem; line-height: 1.8; color: var(--text-main);">
+          <li><strong>Activate Multi-Factor Authentication (MFA)</strong> on your email, student portal, and banking accounts.</li>
+          <li><strong>Never reuse passwords</strong> across multiple websites; a breach on one site compromises all of them.</li>
+          <li><strong>Inspect website URLs carefully</strong> for HTTPS (padlock icon) and check for typosquatted domain names.</li>
+          <li><strong>Keep your operating system and browsers updated</strong> with automatic security patches enabled.</li>
+          <li><strong>Avoid open public Wi-Fi</strong> for sensitive banking transactions unless connected via a trusted VPN.</li>
+        </ul>
+      </section>
+
+      <!-- Ordered List (Demonstrating HTML <ol> & <li>) -->
+      <section class="card">
+        <!-- Heading 3 -->
+        <h3 style="color: var(--accent-green);">Incident Response Protocol</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0.4rem 0 1rem;">
+          What to do immediately if you suspect an account compromise:
+        </p>
+        <ol style="margin-left: 1.5rem; line-height: 1.8; color: var(--text-main);">
+          <li><strong>Disconnect the affected device</strong> from Wi-Fi and ethernet networks to stop malware spread.</li>
+          <li><strong>Change account passwords immediately</strong> using another known clean device.</li>
+          <li><strong>Revoke active sessions and tokens</strong> in your account security settings.</li>
+          <li><strong>Notify your institution's IT helpdesk</strong> or bank support to monitor unauthorized activity.</li>
+          <li><strong>Scan your system</strong> using updated endpoint antivirus tools and review recent login logs.</li>
+        </ol>
+      </section>
+
+    </div>
+
+    <!-- Description / Definition List Section (Demonstrating HTML <dl>, <dt>, <dd>) -->
+    <section class="card" style="border-left: 4px solid var(--accent-cyan);">
+      <!-- Heading 2 -->
+      <h2>The Core Pillars of Information Security (CIA Triad)</h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem;">
+        All international cybersecurity frameworks (NIST, ISO 27001) revolve around these three fundamental principles:
+      </p>
+
+      <dl style="margin-top: 1rem; line-height: 1.8;">
+        <!-- Heading 4 embedded in dt -->
+        <dt style="color: var(--accent-green); font-size: 1.05rem; font-weight: bold;">
+          <h4>1. Confidentiality</h4>
+        </dt>
+        <dd style="margin-left: 1.5rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+          Ensuring that sensitive information is accessible only to authorized people and processes through access controls, encryption, and strict authentication.
+        </dd>
+
+        <dt style="color: var(--accent-green); font-size: 1.05rem; font-weight: bold;">
+          <h4>2. Integrity</h4>
+        </dt>
+        <dd style="margin-left: 1.5rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+          Guaranteeing that data remains authentic, accurate, and completely safeguarded against unauthorized modification, deletion, or tampering in transit and storage.
+        </dd>
+
+        <dt style="color: var(--accent-green); font-size: 1.05rem; font-weight: bold;">
+          <h4>3. Availability</h4>
+        </dt>
+        <dd style="margin-left: 1.5rem; color: var(--text-muted);">
+          Ensuring systems, networks, applications, and databases remain accessible to authorized users reliably whenever required.
+        </dd>
+      </dl>
+
+      <!-- Minor Headings demonstrating HTML h5 and h6 -->
+      <div style="margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--bg-tertiary);">
+        <!-- Heading 5 -->
+        <h5 style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Advisory Standard:</h5>
+        <!-- Heading 6 -->
+        <h6 style="color: #64748b; font-size: 0.85rem; font-weight: normal; margin-top: 0.2rem;">
+          Reference: National Cybersecurity Awareness Framework standards for educational institutions.
+        </h6>
+      </div>
+    </section>
+
+    <!-- Quiz Promotion Callout Banner -->
+    <section class="card" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%); border: 1px solid rgba(6, 182, 212, 0.35); text-align: center; padding: 2.5rem 1.5rem; margin-top: 2rem;">
+      <!-- Heading 2 -->
+      <h2 style="font-size: 1.9rem; margin-bottom: 0.6rem;">How Cyber-Aware Are You?</h2>
+      <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto 1.5rem; font-size: 1.05rem;">
+        Put your cybersecurity instincts to the test! Take our interactive 5-question quiz to assess your ability to recognize phishing scams, password best practices, and secure browsing habits.
+      </p>
+      <div>
+        <a href="quiz.html" class="btn btn-primary" style="padding: 0.8rem 2.2rem; font-size: 1.05rem;">
+          Start the Cyber Safety Quiz &rarr;
+        </a>
+        <a href="learn.html" class="btn btn-outline" style="margin-left: 0.8rem; padding: 0.8rem 1.6rem; font-size: 1.05rem;">
+          Explore Interactive Learning
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Professional Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4 style="color: var(--accent-cyan); font-size: 1.1rem; display: flex; align-items: center; gap: 0.4rem;">
+          🛡️ CyberAware Portal
+        </h4>
+        <p style="margin-top: 0.6rem; line-height: 1.6; color: var(--text-muted);">
+          A beginner-friendly education platform empowering students, faculty, and internet users with actionable cyber safety knowledge and defense strategies.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Interactive Learning</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Tools & Resources</a></li>
+          <li><a href="quiz.html">Safety Quiz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Interactive Tools</h4>
+        <ul class="footer-links">
+          <li><a href="resources.html">Password Strength Checker</a></li>
+          <li><a href="learn.html#phishing-sim">Phishing Email Simulator</a></li>
+          <li><a href="safety-tips.html">Daily Threat Advisories</a></li>
+          <li><a href="quiz.html">Knowledge Assessment</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cybersecurity Awareness and Learning Portal. Built for educational and awareness purposes.</p>
+      <div>
+        <!-- Discrete examiner link to practicals.html as requested -->
+        <a href="practicals.html" class="footer-wtl-link" title="Web Technology Laboratory Practicals & Viva Guide">
+          🧪 WTL Practicals
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

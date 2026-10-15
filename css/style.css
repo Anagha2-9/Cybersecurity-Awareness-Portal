@@ -1,0 +1,708 @@
+/* ==========================================================================
+   Cybersecurity Awareness and Learning Portal
+   Practical 03: CSS Styling, Box Model, Colors & Typography
+   Practical 04: Base Layout & Components
+   Theme: Professional Dark Cybersecurity (Navy, Cyan & Emerald)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Reset & Variables (Custom Properties)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Dark Cybersecurity Theme Palette */
+  --bg-primary: #090e1a;       /* Deep cybersecurity dark navy */
+  --bg-secondary: #111a2e;     /* Elevated panel / card background */
+  --bg-tertiary: #1e2942;      /* Border / muted container */
+  --bg-hover: #192640;         /* Slightly lighter container on hover */
+  --text-main: #f8fafc;        /* High-contrast crisp text */
+  --text-muted: #94a3b8;       /* Clean secondary text */
+  --accent-cyan: #06b6d4;      /* Cyber cyan for primary accents & links */
+  --accent-green: #10b981;     /* Cyber emerald for security & success */
+  --accent-red: #ef4444;       /* Danger / alert red */
+  --accent-yellow: #f59e0b;    /* Warning yellow */
+
+  /* Typography */
+  --font-main: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  --font-mono: 'Consolas', 'Courier New', monospace;
+
+  /* Box Model Properties: border-radius & shadows */
+  --border-radius: 10px;
+  --border-subtle: 1px solid rgba(148, 163, 184, 0.14);
+  --box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.5);
+  --box-glow: 0 8px 24px -4px rgba(6, 182, 212, 0.16);
+}
+
+/* Universal selector enforcing standard box-sizing (Practical 03 Box Model) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   2. Header & Navigation Bar (CSS Flexbox)
+   -------------------------------------------------------------------------- */
+.site-header {
+  background-color: rgba(17, 26, 46, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+  padding: 0.9rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--box-shadow);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo a {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  letter-spacing: 0.5px;
+}
+
+.logo a span.logo-badge {
+  color: var(--accent-green);
+  font-size: 0.85rem;
+  border: 1px solid var(--accent-green);
+  padding: 1px 7px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-cyan);
+  background-color: rgba(6, 182, 212, 0.08);
+}
+
+.nav-links a.active {
+  color: #fff;
+  background-color: var(--bg-tertiary);
+  border-bottom: 2px solid var(--accent-cyan);
+}
+
+.nav-links a.nav-quiz-btn {
+  background: linear-gradient(135deg, var(--accent-cyan), #0891b2);
+  color: var(--bg-primary);
+  font-weight: 700;
+  padding: 0.45rem 1rem;
+}
+
+.nav-links a.nav-quiz-btn:hover {
+  background: linear-gradient(135deg, var(--accent-green), #059669);
+  color: var(--bg-primary);
+}
+
+/* --------------------------------------------------------------------------
+   3. Main Content Container
+   -------------------------------------------------------------------------- */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  flex: 1; /* Pushes footer to bottom */
+}
+
+/* Page titles and section headers */
+.page-title {
+  font-size: 2.1rem;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.page-title span.highlight {
+  color: var(--accent-cyan);
+}
+
+.page-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   4. Hero Section (Homepage)
+   -------------------------------------------------------------------------- */
+.hero-card {
+  background: linear-gradient(135deg, #111a2e 0%, #0d1527 100%);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  border-radius: var(--border-radius);
+  padding: 3rem 2.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--box-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: rgba(6, 182, 212, 0.12);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-size: 2.6rem;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.hero-title span {
+  background: linear-gradient(135deg, #06b6d4, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-text {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.8rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-illustration {
+  text-align: center;
+  position: relative;
+}
+
+.hero-illustration img,
+.hero-illustration svg {
+  max-width: 280px;
+  height: auto;
+  filter: drop-shadow(0 0 25px rgba(6, 182, 212, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.hero-illustration:hover img,
+.hero-illustration:hover svg {
+  transform: scale(1.02);
+}
+
+/* --------------------------------------------------------------------------
+   5. Cards & Content Panels (Box Model)
+   -------------------------------------------------------------------------- */
+.card {
+  background-color: var(--bg-secondary);
+  border: var(--border-subtle);
+  border-radius: var(--border-radius);
+  padding: 1.8rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--box-shadow);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  transform: translateY(-2px);
+  box-shadow: var(--box-glow);
+}
+
+.card h2, .card h3 {
+  color: var(--text-main);
+  margin-bottom: 0.6rem;
+}
+
+/* Section Header Bar */
+.section-header {
+  margin: 2.5rem 0 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--bg-tertiary);
+  padding-bottom: 0.8rem;
+}
+
+.section-header h2 {
+  font-size: 1.6rem;
+  color: var(--text-main);
+}
+
+.section-header p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+
+/* Threat Showcase Detail Card */
+.threat-card {
+  background-color: var(--bg-secondary);
+  border: var(--border-subtle);
+  border-radius: var(--border-radius);
+  padding: 1.8rem;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.threat-card:hover {
+  border-color: rgba(6, 182, 212, 0.45);
+  transform: translateY(-3px);
+}
+
+.threat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+}
+
+.threat-icon {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.threat-detail-block {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--bg-tertiary);
+}
+
+.threat-detail-block h4 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
+}
+
+.warning-signs {
+  color: #fca5a5;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.prevention-rules {
+  color: #a7f3d0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   6. Buttons & Badges
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-cyan), #0891b2);
+  color: #090e1a;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #22d3ee, #06b6d4);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--accent-green), #059669);
+  color: #090e1a;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #34d399, #10b981);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--accent-cyan);
+  border: 1px solid var(--accent-cyan);
+}
+
+.btn-outline:hover {
+  background-color: rgba(6, 182, 212, 0.1);
+  color: #fff;
+  border-color: #22d3ee;
+}
+
+.btn-secondary {
+  background-color: var(--bg-tertiary);
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-hover);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+
+.badge-danger {
+  background-color: rgba(239, 68, 68, 0.18);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.badge-warning {
+  background-color: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.badge-success {
+  background-color: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.badge-info {
+  background-color: rgba(6, 182, 212, 0.18);
+  color: #38bdf8;
+  border: 1px solid rgba(6, 182, 212, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   7. Form Elements
+   -------------------------------------------------------------------------- */
+.form-group {
+  margin-bottom: 1.3rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 6px;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+}
+
+.error-message {
+  color: var(--accent-red);
+  font-size: 0.85rem;
+  margin-top: 0.35rem;
+  display: block;
+}
+
+.success-message {
+  color: #34d399;
+  font-size: 0.95rem;
+  padding: 1rem 1.2rem;
+  background-color: rgba(16, 185, 129, 0.12);
+  border: 1px solid var(--accent-green);
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. Tables
+   -------------------------------------------------------------------------- */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: var(--bg-secondary);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.9rem 1.1rem;
+  text-align: left;
+  border: 1px solid var(--bg-tertiary);
+}
+
+.data-table th {
+  background-color: var(--bg-tertiary);
+  color: var(--accent-cyan);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.data-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* --------------------------------------------------------------------------
+   9. Interactive Phishing Simulator (Learn Page)
+   -------------------------------------------------------------------------- */
+.phishing-simulator {
+  background-color: #0b1120;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.email-header-bar {
+  background-color: #1e293b;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.email-body-box {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  color: #e2e8f0;
+}
+
+.redflag-target {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-bottom: 2px dashed var(--accent-red);
+  padding: 2px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.redflag-target:hover {
+  background-color: rgba(239, 68, 68, 0.35);
+}
+
+.redflag-explanation {
+  background-color: #1e293b;
+  border-left: 4px solid var(--accent-red);
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* --------------------------------------------------------------------------
+   10. Accordion Component (Resources & DOM)
+   -------------------------------------------------------------------------- */
+.accordion-item {
+  margin-bottom: 0.8rem;
+  border: 1px solid var(--bg-tertiary);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.accordion-btn {
+  width: 100%;
+  text-align: left;
+  background-color: var(--bg-secondary);
+  color: var(--text-main);
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.accordion-btn:hover,
+.accordion-btn.active {
+  background-color: var(--bg-tertiary);
+  color: var(--accent-cyan);
+}
+
+.accordion-btn::after {
+  content: '+';
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  transition: transform 0.2s ease;
+}
+
+.accordion-btn.active::after {
+  content: '−';
+}
+
+.accordion-content {
+  background-color: var(--bg-primary);
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1rem;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   11. Site Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: #0b1120;
+  border-top: 1px solid var(--bg-tertiary);
+  padding: 2.5rem 1.5rem 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-col h4 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.4rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-cyan);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+  padding-top: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-wtl-link {
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid #334155;
+  transition: all 0.2s ease;
+}
+
+.footer-wtl-link:hover {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  background-color: rgba(6, 182, 212, 0.08);
+}

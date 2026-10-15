@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Practical 03: Inline, Internal and External CSS
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical 03: Inline, Internal & External CSS | CyberAware Portal</title>
+
+  <!-- 1. EXTERNAL CSS: Loaded from external .css files -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- 2. INTERNAL CSS: Written inside <style> tags within <head> -->
+  <style>
+    /* Internal CSS styles specific to this page */
+    .internal-css-box {
+      background-color: #172554; /* Deep cyber blue */
+      border: 2px dashed #3b82f6;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-top: 1rem;
+      color: #bfdbfe;
+    }
+
+    .internal-badge {
+      background-color: #1d4ed8;
+      color: #eff6ff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+
+    /* Specificity Demonstration: Target class with internal rule */
+    .precedence-target {
+      color: #60a5fa; /* Blue from Internal CSS */
+      border-left: 4px solid #60a5fa;
+      padding-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="practicals.html" class="active highlight-btn">🧪 Examiner Hub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <header>
+      <span class="badge badge-info">Practical 03</span>
+      <h1 class="page-title">Inline, Internal and External CSS Demonstration</h1>
+      <p class="page-subtitle">Demonstrates the three methods of attaching Cascading Style Sheets (CSS) to an HTML document and their cascading precedence.</p>
+    </header>
+
+    <div class="grid-container">
+      
+      <!-- Card 1: External CSS -->
+      <section class="card">
+        <div class="flex-between">
+          <h3>1. External CSS</h3>
+          <span class="badge badge-success">&lt;link rel="stylesheet"&gt;</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.8rem;">
+          Rules are written in standalone <code>.css</code> files (e.g. <code>css/style.css</code>) and linked in the <code>&lt;head&gt;</code>.
+        </p>
+
+        <div style="background: var(--bg-primary); padding: 1rem; border-radius: 6px; margin-top: 1rem; border: 1px solid var(--bg-tertiary);">
+          <code style="color: var(--accent-cyan); font-size: 0.85rem;">
+            &lt;!-- In HTML head --&gt;<br>
+            &lt;link rel="stylesheet" href="css/style.css"&gt;
+          </code>
+        </div>
+        <p style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--accent-green);">
+          ✅ Best Practice: Separates presentation from content across an entire multi-page website.
+        </p>
+      </section>
+
+      <!-- Card 2: Internal CSS -->
+      <section class="card">
+        <div class="flex-between">
+          <h3>2. Internal CSS</h3>
+          <span class="internal-badge">&lt;style&gt; in &lt;head&gt;</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.8rem;">
+          Rules are embedded inside a <code>&lt;style&gt;</code> block within the document's <code>&lt;head&gt;</code> section.
+        </p>
+
+        <!-- Live Styled Box using Internal CSS rules defined in <style> block above -->
+        <div class="internal-css-box">
+          <strong style="color: #93c5fd;">🔐 Internal CSS Styled Advisory Box</strong>
+          <p style="font-size: 0.85rem; margin-top: 0.3rem;">
+            This box is styled by <code>.internal-css-box</code> defined directly in this page's &lt;style&gt; tag.
+          </p>
+        </div>
+        <p style="margin-top: 0.8rem; font-size: 0.85rem; color: #93c5fd;">
+          💡 Useful when a single page requires unique, custom styles not shared elsewhere.
+        </p>
+      </section>
+
+      <!-- Card 3: Inline CSS -->
+      <section class="card">
+        <div class="flex-between">
+          <h3>3. Inline CSS</h3>
+          <span class="badge badge-warning">style="..." attribute</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.8rem;">
+          Rules applied directly to a single specific HTML tag using the <code>style</code> attribute.
+        </p>
+
+        <!-- Live Styled Elements using Inline CSS -->
+        <div style="background-color: #451a03; border: 2px solid #f59e0b; padding: 1rem; border-radius: 6px; margin-top: 1rem;">
+          <span style="color: #fef3c7; font-weight: bold; font-size: 1rem;">
+            ⚠️ Inline Styled Security Alert
+          </span>
+          <p style="color: #fde68a; font-size: 0.85rem; margin-top: 0.3rem; line-height: 1.4;">
+            Styled with: <code>style="background-color: #451a03; border: 2px solid #f59e0b;"</code>
+          </p>
+        </div>
+        <p style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--accent-yellow);">
+          ⚠️ Highest specificity, but harder to maintain if overused.
+        </p>
+      </section>
+
+    </div>
+
+    <!-- Practical Precedence / Specificity Test -->
+    <section class="card" style="margin-top: 1.5rem;">
+      <h2>4. The Cascading Precedence Demonstration</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">
+        What happens when the same element is styled by External, Internal, and Inline CSS? 
+        The browser resolves conflicts according to specificity:
+        <strong>Inline CSS &gt; Internal CSS &gt; External CSS &gt; Browser Default</strong>.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+        
+        <!-- Element 1: External CSS only -->
+        <div class="card" style="background: var(--bg-primary); margin: 0;">
+          <p style="color: var(--text-muted); font-size: 0.8rem;">Styled by External CSS:</p>
+          <p style="margin-top: 0.5rem; font-weight: 600;">Text styled by external <code>var(--text-main)</code></p>
+        </div>
+
+        <!-- Element 2: Internal CSS overriding External -->
+        <div class="card" style="background: var(--bg-primary); margin: 0;">
+          <p style="color: var(--text-muted); font-size: 0.8rem;">Internal CSS Override:</p>
+          <p class="precedence-target" style="margin-top: 0.5rem; font-weight: 600;">
+            Text styled blue by <code>.precedence-target</code> in &lt;style&gt;
+          </p>
+        </div>
+
+        <!-- Element 3: Inline CSS overriding both Internal and External -->
+        <div class="card" style="background: var(--bg-primary); margin: 0;">
+          <p style="color: var(--text-muted); font-size: 0.8rem;">Inline CSS Override (Highest Priority):</p>
+          <p class="precedence-target" style="color: #ec4899; border-left: 4px solid #ec4899; margin-top: 0.5rem; font-weight: 600;">
+            Text turned pink by inline <code>style="color: #ec4899"</code>!
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Cybersecurity Awareness and Learning Portal | Practical 03: Inline, Internal &amp; External CSS</p>
+  </footer>
+
+</body>
+</html>

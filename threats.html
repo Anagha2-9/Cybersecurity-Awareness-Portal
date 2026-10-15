@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Cybersecurity Awareness and Learning Portal
+       Practical 04: Responsive Design using Flexbox, Grid & Media Queries
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Threats Directory | CyberAware Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html" class="active">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html" class="nav-quiz-btn">Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <header>
+      <h1 class="page-title">Common Cyber Threats <span class="highlight">&amp; Attack Vectors</span></h1>
+      <p class="page-subtitle">
+        Cybercriminals exploit both technical flaws and human cognitive biases. 
+        Explore the primary threat vectors targeting internet users, understand their key warning signs, and learn how to proactively protect your systems.
+      </p>
+    </header>
+
+    <!-- CSS Grid Container for Threat Cards (Practical 04 Grid) -->
+    <div class="grid-container">
+      
+      <!-- Threat 1: Phishing Attacks -->
+      <article class="threat-card">
+        <div class="threat-card-header">
+          <div>
+            <div class="threat-icon">🎣</div>
+            <h3>Phishing Attacks</h3>
+          </div>
+          <span class="badge badge-danger">High Severity</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          <strong>What it is:</strong> Fraudulent communications (emails, SMS, direct messages, or fake websites) crafted to mimic trusted entities like banks, universities, or tech companies to steal credentials and sensitive data.
+        </p>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #f87171;">⚠️ Common Warning Signs:</h4>
+          <ul class="warning-signs" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>Mismatched sender email domains (e.g. <code>support@paypa1-security.com</code>).</li>
+            <li>Manufactured urgency: "Immediate action required or account suspended!"</li>
+            <li>Generic greetings such as "Dear Customer" instead of your actual name.</li>
+            <li>Hyperlinks pointing to unfamiliar, unverified domain URLs upon hover.</li>
+          </ul>
+        </div>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #34d399;">🛡️ Prevention Methods:</h4>
+          <ul class="prevention-rules" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>Inspect sender email headers and hover over links before clicking.</li>
+            <li>Never disclose passwords, OTPs, or credit card CVV codes over email.</li>
+            <li>Enforce hardware or app-based Multi-Factor Authentication (MFA).</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Threat 2: Malware & Trojans -->
+      <article class="threat-card">
+        <div class="threat-card-header">
+          <div>
+            <div class="threat-icon">🦠</div>
+            <h3>Malware &amp; Spyware</h3>
+          </div>
+          <span class="badge badge-danger">High Severity</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          <strong>What it is:</strong> Any malicious software—including viruses, trojans, keyloggers, and spyware—engineered to infiltrate, disrupt, damage, or gain unauthorized access to computer systems and personal files.
+        </p>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #f87171;">⚠️ Common Warning Signs:</h4>
+          <ul class="warning-signs" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>Sudden system slowdowns, high CPU/RAM usage, and frequent crashes.</li>
+            <li>Persistent browser redirects and intrusive pop-up advertisements.</li>
+            <li>Antivirus tools and Windows security settings disabled unexpectedly.</li>
+            <li>Unfamiliar software icons appearing on your desktop or system tray.</li>
+          </ul>
+        </div>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #34d399;">🛡️ Prevention Methods:</h4>
+          <ul class="prevention-rules" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>Download binaries and installers only from verified official vendor websites.</li>
+            <li>Keep operating system security patches and browser updates current.</li>
+            <li>Avoid pirated software, cracked games, and unverified torrent files.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Threat 3: Ransomware -->
+      <article class="threat-card">
+        <div class="threat-card-header">
+          <div>
+            <div class="threat-icon">🔒</div>
+            <h3>Ransomware Extortion</h3>
+          </div>
+          <span class="badge badge-danger">Critical</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          <strong>What it is:</strong> A severe form of malware that secretly encrypts a victim's documents, databases, and photos with unbreakable cryptographic algorithms, demanding ransom payments (typically in cryptocurrency) for decryption.
+        </p>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #f87171;">⚠️ Common Warning Signs:</h4>
+          <ul class="warning-signs" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>File extensions abruptly changing (e.g., <code>report.pdf.locked</code>).</li>
+            <li>Inability to open personal files, accompanied by desktop wallpaper changes.</li>
+            <li>Ransom demand instructions and countdown timers saved on your desktop.</li>
+          </ul>
+        </div>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #34d399;">🛡️ Prevention Methods:</h4>
+          <ul class="prevention-rules" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>Follow the 3-2-1 backup strategy: 3 copies, on 2 media types, with 1 offline.</li>
+            <li>Block executable attachments (<code>.exe</code>, <code>.vbs</code>, <code>.bat</code>) in email filters.</li>
+            <li>Use endpoint protection with real-time ransomware behavior detection.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Threat 4: Password Attacks -->
+      <article class="threat-card">
+        <div class="threat-card-header">
+          <div>
+            <div class="threat-icon">🔑</div>
+            <h3>Password &amp; Credential Attacks</h3>
+          </div>
+          <span class="badge badge-warning">Frequent</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          <strong>What it is:</strong> Systematic attempts to crack passwords using automated brute-force dictionaries, credential stuffing (using leaked credentials from past breaches), and keylogging malware.
+        </p>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #f87171;">⚠️ Common Warning Signs:</h4>
+          <ul class="warning-signs" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>Automated "New login from unknown device/location" alert notifications.</li>
+            <li>Frequent lockouts caused by failed login attempts you did not trigger.</li>
+            <li>Password reset emails received unexpectedly for accounts you own.</li>
+          </ul>
+        </div>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #34d399;">🛡️ Prevention Methods:</h4>
+          <ul class="prevention-rules" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>Construct 14+ character passphrases composed of random words.</li>
+            <li>Never reuse passwords across personal, college, or financial accounts.</li>
+            <li>Store complex credentials in a reputable password manager.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Threat 5: Social Engineering -->
+      <article class="threat-card">
+        <div class="threat-card-header">
+          <div>
+            <div class="threat-icon">🧠</div>
+            <h3>Social Engineering</h3>
+          </div>
+          <span class="badge badge-danger">Psychological</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          <strong>What it is:</strong> Psychological manipulation designed to trick individuals into divulging confidential information, granting access to restricted portals, or performing financial transfers under false pretenses.
+        </p>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #f87171;">⚠️ Common Warning Signs:</h4>
+          <ul class="warning-signs" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>High-pressure tactics insisting on bypassing standard safety verification.</li>
+            <li>Unsolicited calls from "IT Support" or "Bank Representatives" asking for OTPs.</li>
+            <li>Tailgating: strangers requesting access through secure office doorways.</li>
+          </ul>
+        </div>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #34d399;">🛡️ Prevention Methods:</h4>
+          <ul class="prevention-rules" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>Always verify suspicious requests via trusted out-of-band contact channels.</li>
+            <li>Remember: legitimate banks and IT administrators will never request your OTP or password.</li>
+            <li>Slow down: pause and question unexpected urgent requests.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Threat 6: Distributed Denial of Service (DDoS) -->
+      <article class="threat-card">
+        <div class="threat-card-header">
+          <div>
+            <div class="threat-icon">🌊</div>
+            <h3>Denial of Service (DDoS)</h3>
+          </div>
+          <span class="badge badge-info">Availability</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+          <strong>What it is:</strong> A malicious attempt to disrupt the normal traffic of a targeted server, service, or network by overwhelming the target with an artificial flood of internet traffic from compromised botnets.
+        </p>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #f87171;">⚠️ Common Warning Signs:</h4>
+          <ul class="warning-signs" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>Severe network and server latency or complete unresponsiveness.</li>
+            <li>Sudden unexplained traffic spikes originating from geographically dispersed IP pools.</li>
+            <li>Repetitive 502/504 gateway timeout errors on web applications.</li>
+          </ul>
+        </div>
+
+        <div class="threat-detail-block">
+          <h4 style="color: #34d399;">🛡️ Prevention Methods:</h4>
+          <ul class="prevention-rules" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+            <li>Route application traffic through cloud Web Application Firewalls (WAF).</li>
+            <li>Implement rate limiting, Anycast DNS routing, and DDoS mitigation proxies.</li>
+            <li>Maintain redundant network pathways and scalable server infrastructure.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Threat Defense Callout -->
+    <section class="card" style="margin-top: 2rem; border-left: 4px solid var(--accent-green);">
+      <div class="flex-between">
+        <div>
+          <h3>Ready to Strengthen Your Personal Defense?</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.2rem;">
+            Explore practical hygiene habits or test your password strength in our interactive learning module.
+          </p>
+        </div>
+        <div>
+          <a href="learn.html" class="btn btn-primary">Start Interactive Learning &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4 style="color: var(--accent-cyan);">🛡️ CyberAware Portal</h4>
+        <p style="margin-top: 0.6rem; color: var(--text-muted); line-height: 1.6;">
+          An open educational resource dedicated to demystifying cybersecurity threats and teaching defense-in-depth principles for digital citizens.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Interactive Learning</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Safety Quiz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Defense Tools</h4>
+        <ul class="footer-links">
+          <li><a href="resources.html">Password Strength Tester</a></li>
+          <li><a href="learn.html#phishing-sim">Phishing Red Flag Simulator</a></li>
+          <li><a href="safety-tips.html">Advisories Feed</a></li>
+          <li><a href="quiz.html">Quiz Assessment</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cybersecurity Awareness and Learning Portal. All rights reserved.</p>
+      <div>
+        <a href="practicals.html" class="footer-wtl-link" title="Web Technology Laboratory Practicals & Viva Guide">
+          🧪 WTL Practicals
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

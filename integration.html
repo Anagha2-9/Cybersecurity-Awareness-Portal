@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Practical 15: REST API using Node.js, Express & Database Connectivity
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical 15: REST API & Database Connectivity | CyberAware Portal</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="integration.html" class="active highlight-btn">P15: REST + DB Console</a></li>
+          <li><a href="practicals.html">Examiner Hub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <header>
+      <span class="badge badge-info">Practical 15</span>
+      <h1 class="page-title">REST API with Node.js, Express &amp; MySQL Connectivity</h1>
+      <p class="page-subtitle">
+        Interactive Test Console demonstrating full REST API operations directly connected to a <strong>MySQL database</strong> 
+        (<code>cyber_portal_db</code>) via an <strong>Express</strong> backend: 
+        <span class="badge badge-info">GET</span>, 
+        <span class="badge badge-success">POST</span>, 
+        <span class="badge badge-warning">PUT</span>, and 
+        <span class="badge badge-danger">DELETE</span>.
+      </p>
+    </header>
+
+    <!-- Backend & Database Status Monitor -->
+    <section class="card" style="border-left: 4px solid var(--accent-cyan);">
+      <div class="flex-between">
+        <h3>🔌 Backend &amp; Database Health Monitor</h3>
+        <button id="btnCheckStatus" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.3rem 0.8rem;">
+          🔄 Re-test Connection
+        </button>
+      </div>
+      <div class="grid-container" style="margin-top: 1rem;">
+        
+        <div style="background: var(--bg-primary); padding: 1rem; border-radius: 6px;">
+          <div class="flex-between">
+            <strong>Express Server (:5000)</strong>
+            <span id="expressBadge" class="badge badge-warning">Checking...</span>
+          </div>
+          <p id="expressText" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">
+            Testing http://localhost:5000/api/threats...
+          </p>
+        </div>
+
+        <div style="background: var(--bg-primary); padding: 1rem; border-radius: 6px;">
+          <div class="flex-between">
+            <strong>MySQL Database</strong>
+            <span id="mysqlBadge" class="badge badge-warning">Checking...</span>
+          </div>
+          <p id="mysqlText" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">
+            Testing MySQL connection via /api/db-status...
+          </p>
+        </div>
+
+        <div style="background: var(--bg-primary); padding: 1rem; border-radius: 6px;">
+          <div class="flex-between">
+            <strong>Database Table</strong>
+            <span class="badge badge-info">incident_reports</span>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">
+            Schema initialized via <code>backend-php/db.sql</code>.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- REST Operation 1: POST /api/incidents (CREATE) -->
+    <div class="two-col-grid">
+      
+      <!-- Incident Submission Form (POST & PUT) -->
+      <section class="card">
+        <h3 id="formHeading">1. POST /api/incidents (Create Record in MySQL)</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+          Submits JSON payload via <code>fetch()</code> to Express REST API; returns <code>HTTP 201 Created</code>:
+        </p>
+
+        <form id="restIncidentForm" novalidate>
+          <input type="hidden" id="editIncidentId" value="">
+
+          <div class="form-group">
+            <label for="restName">Reporter Name:</label>
+            <input type="text" id="restName" class="form-control" placeholder="e.g. Maya Lin" required>
+          </div>
+
+          <div class="form-group">
+            <label for="restEmail">Contact Email:</label>
+            <input type="email" id="restEmail" class="form-control" placeholder="e.g. maya@college.edu" required>
+          </div>
+
+          <div class="form-group">
+            <label for="restType">Incident Classification:</label>
+            <select id="restType" class="form-control" required>
+              <option value="">-- Select Threat Category --</option>
+              <option value="Phishing">Phishing Attempt</option>
+              <option value="Malware">Malware Infection</option>
+              <option value="Ransomware">Ransomware Warning</option>
+              <option value="SQL Injection">SQL Injection Probe</option>
+              <option value="DDoS">DDoS Stream</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="restDesc">Incident Summary:</label>
+            <textarea id="restDesc" rows="3" class="form-control" placeholder="Describe the security event..." required></textarea>
+          </div>
+
+          <div class="flex-between">
+            <button type="submit" id="restSubmitBtn" class="btn btn-primary">
+              ⚡ Execute POST (Insert to MySQL)
+            </button>
+            <button type="button" id="restCancelEditBtn" class="btn btn-outline" style="display: none;">
+              Cancel Edit
+            </button>
+          </div>
+        </form>
+
+        <div id="restStatusMessage" style="margin-top: 1rem;"></div>
+      </section>
+
+      <!-- REST Response & HTTP Inspection Console -->
+      <section class="card">
+        <h3>Live HTTP Response Inspector</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.3rem;">
+          Raw JSON payload and HTTP response code returned by Node.js/Express API:
+        </p>
+
+        <div style="background: #090d16; border: 1px solid var(--bg-tertiary); border-radius: 6px; padding: 1rem; margin-top: 0.8rem;">
+          <div class="flex-between" style="border-bottom: 1px solid var(--bg-tertiary); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+            <span id="responseStatusBadge" class="badge badge-info">HTTP Code: ---</span>
+            <small id="responseTimestamp" style="color: var(--text-muted);">Timestamp: ---</small>
+          </div>
+          <pre id="responseJsonOutput" style="font-family: var(--font-mono); font-size: 0.85rem; color: #a7f3d0; overflow-x: auto; margin: 0; max-height: 260px;">// Submit or fetch data to view API JSON response</pre>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- REST Operation 2: GET, PUT & DELETE /api/incidents -->
+    <section class="card" style="margin-top: 1.5rem;">
+      <div class="flex-between">
+        <div>
+          <h3>2. GET, PUT &amp; DELETE /api/incidents (Live MySQL Database Records)</h3>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.2rem;">
+            Fetched via <code>GET http://localhost:5000/api/incidents</code>. Click <strong>Edit (PUT)</strong> or <strong>Delete (DELETE)</strong>:
+          </p>
+        </div>
+        <button id="btnRefreshIncidents" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.3rem 0.8rem;">
+          🔄 Refresh Feed (GET)
+        </button>
+      </div>
+
+      <div style="overflow-x: auto; margin-top: 1rem;">
+        <table class="data-table" id="incidentsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Reporter</th>
+              <th>Email</th>
+              <th>Threat Type</th>
+              <th>Summary</th>
+              <th>Timestamp</th>
+              <th style="text-align: center;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="incidentsTableBody">
+            <tr>
+              <td colspan="7" style="text-align: center; color: var(--text-muted);">
+                Loading live records from MySQL database...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom" style="border: 0; padding: 0;">
+      <p>&copy; 2026 Cybersecurity Awareness and Learning Portal | Practical 15: REST API using Node.js, Express &amp; MySQL</p>
+      <div>
+        <a href="practicals.html" class="footer-wtl-link">🧪 WTL Practicals</a>
+        <a href="index.html" class="footer-wtl-link" style="margin-left: 0.5rem;">&larr; Public Portal</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- REST API Client Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const expressBadge = document.getElementById('expressBadge');
+      const expressText  = document.getElementById('expressText');
+      const mysqlBadge   = document.getElementById('mysqlBadge');
+      const mysqlText    = document.getElementById('mysqlText');
+      
+      const formHeading         = document.getElementById('formHeading');
+      const restIncidentForm    = document.getElementById('restIncidentForm');
+      const editIncidentId      = document.getElementById('editIncidentId');
+      const restName            = document.getElementById('restName');
+      const restEmail           = document.getElementById('restEmail');
+      const restType            = document.getElementById('restType');
+      const restDesc            = document.getElementById('restDesc');
+      const restSubmitBtn       = document.getElementById('restSubmitBtn');
+      const restCancelEditBtn   = document.getElementById('restCancelEditBtn');
+      const restStatusMessage   = document.getElementById('restStatusMessage');
+
+      const responseStatusBadge = document.getElementById('responseStatusBadge');
+      const responseTimestamp   = document.getElementById('responseTimestamp');
+      const responseJsonOutput  = document.getElementById('responseJsonOutput');
+      const incidentsTableBody  = document.getElementById('incidentsTableBody');
+
+      const API_BASE = 'http://localhost:5000/api';
+
+      // 1. Check Backend & MySQL Health
+      async function checkHealth() {
+        try {
+          const res = await fetch(`${API_BASE}/db-status`);
+          const data = await res.json();
+
+          expressBadge.className = 'badge badge-success';
+          expressBadge.textContent = 'Online (:5000)';
+          expressText.textContent = 'Express server reachable.';
+
+          if (data.connected) {
+            mysqlBadge.className = 'badge badge-success';
+            mysqlBadge.textContent = 'Connected (MySQL)';
+            mysqlText.textContent = 'Database cyber_portal_db ready.';
+          } else {
+            mysqlBadge.className = 'badge badge-warning';
+            mysqlBadge.textContent = 'MySQL Unreachable';
+            mysqlText.textContent = 'Start XAMPP MySQL and import backend-php/db.sql.';
+          }
+        } catch (err) {
+          expressBadge.className = 'badge badge-danger';
+          expressBadge.textContent = 'Offline';
+          expressText.innerHTML = 'Run <code>node backend-node/server.js</code> in terminal.';
+
+          mysqlBadge.className = 'badge badge-danger';
+          mysqlBadge.textContent = 'Server Offline';
+          mysqlText.textContent = 'Cannot reach Express server.';
+        }
+      }
+
+      // 2. GET /api/incidents
+      async function fetchIncidents() {
+        try {
+          const res = await fetch(`${API_BASE}/incidents`);
+          const data = await res.json();
+
+          logResponse(res.status, data);
+
+          if (data.success && Array.isArray(data.data)) {
+            renderTable(data.data);
+          } else {
+            incidentsTableBody.innerHTML = `
+              <tr>
+                <td colspan="7" style="text-align: center; color: var(--accent-red);">
+                  ⚠️ ${escapeHTML(data.message || 'Failed to fetch records from database.')}
+                </td>
+              </tr>
+            `;
+          }
+        } catch (err) {
+          incidentsTableBody.innerHTML = `
+            <tr>
+              <td colspan="7" style="text-align: center; color: var(--accent-yellow);">
+                ⚠️ Could not connect to Express REST API at http://localhost:5000.<br>
+                Please start the backend server: <code>cd backend-node; node server.js</code>
+              </td>
+            </tr>
+          `;
+        }
+      }
+
+      // Render Incidents into HTML Table
+      function renderTable(incidents) {
+        if (incidents.length === 0) {
+          incidentsTableBody.innerHTML = `
+            <tr>
+              <td colspan="7" style="text-align: center; color: var(--text-muted);">
+                No incident reports found in MySQL database table. Add one using the form above!
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        incidentsTableBody.innerHTML = '';
+        incidents.forEach(item => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><strong>#${item.id}</strong></td>
+            <td>${escapeHTML(item.reporter_name)}</td>
+            <td>${escapeHTML(item.email)}</td>
+            <td><span class="badge ${item.incident_type === 'Phishing' ? 'badge-danger' : 'badge-warning'}">${escapeHTML(item.incident_type)}</span></td>
+            <td>${escapeHTML(item.description)}</td>
+            <td style="font-size: 0.8rem; color: var(--text-muted);">${escapeHTML(item.reported_at || '')}</td>
+            <td style="text-align: center; white-space: nowrap;">
+              <button class="btn btn-outline edit-btn" data-id="${item.id}" data-name="${escapeHTML(item.reporter_name)}" data-email="${escapeHTML(item.email)}" data-type="${escapeHTML(item.incident_type)}" data-desc="${escapeHTML(item.description)}" style="padding: 2px 8px; font-size: 0.8rem; margin-right: 4px;">
+                ✏️ Edit (PUT)
+              </button>
+              <button class="btn btn-outline delete-btn" data-id="${item.id}" style="padding: 2px 8px; font-size: 0.8rem; border-color: var(--accent-red); color: var(--accent-red);">
+                🗑️ Delete
+              </button>
+            </td>
+          `;
+          incidentsTableBody.appendChild(tr);
+        });
+
+        // Attach PUT and DELETE listeners
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            editIncidentId.value = id;
+            restName.value = btn.getAttribute('data-name');
+            restEmail.value = btn.getAttribute('data-email');
+            restType.value = btn.getAttribute('data-type');
+            restDesc.value = btn.getAttribute('data-desc');
+
+            formHeading.textContent = `Edit Incident #${id} (PUT /api/incidents/${id})`;
+            restSubmitBtn.textContent = `💾 Execute PUT (Update #${id} in MySQL)`;
+            restCancelEditBtn.style.display = 'inline-block';
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+          });
+        });
+
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            const id = btn.getAttribute('data-id');
+            if (confirm(`Execute DELETE /api/incidents/${id} on MySQL database?`)) {
+              await deleteIncident(id);
+            }
+          });
+        });
+      }
+
+      // 3. POST or PUT Handler
+      restIncidentForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const id = editIncidentId.value;
+        const isEditing = Boolean(id);
+
+        const payload = {
+          reporterName: restName.value.trim(),
+          email: restEmail.value.trim(),
+          incidentType: restType.value,
+          description: restDesc.value.trim()
+        };
+
+        if (!payload.reporterName || !payload.email || !payload.incidentType || !payload.description) {
+          alert('All fields are required.');
+          return;
+        }
+
+        const endpoint = isEditing ? `${API_BASE}/incidents/${id}` : `${API_BASE}/incidents`;
+        const method   = isEditing ? 'PUT' : 'POST';
+
+        try {
+          const res = await fetch(endpoint, {
+            method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await res.json();
+          logResponse(res.status, data);
+
+          if (res.ok) {
+            restStatusMessage.innerHTML = `
+              <div class="success-message">
+                ✅ <strong>Success (${res.status})!</strong> ${escapeHTML(data.message)}
+              </div>
+            `;
+            resetForm();
+            fetchIncidents();
+          } else {
+            restStatusMessage.innerHTML = `
+              <div class="card" style="border-left: 4px solid var(--accent-red); margin-top: 0.5rem; padding: 0.8rem;">
+                <p style="color: var(--accent-red);">❌ Error (${res.status}): ${escapeHTML(data.message)}</p>
+              </div>
+            `;
+          }
+        } catch (err) {
+          alert('Network request failed: ' + err.message);
+        }
+      });
+
+      // 4. DELETE /api/incidents/:id
+      async function deleteIncident(id) {
+        try {
+          const res = await fetch(`${API_BASE}/incidents/${id}`, {
+            method: 'DELETE'
+          });
+          const data = await res.json();
+          logResponse(res.status, data);
+
+          if (res.ok) {
+            restStatusMessage.innerHTML = `
+              <div class="success-message" style="border-color: var(--accent-yellow); color: var(--accent-yellow); background: rgba(245, 158, 11, 0.1);">
+                🗑️ <strong>Deleted (${res.status})!</strong> Incident #${id} deleted from MySQL.
+              </div>
+            `;
+            fetchIncidents();
+          } else {
+            alert('Delete failed: ' + data.message);
+          }
+        } catch (err) {
+          alert('Delete request failed: ' + err.message);
+        }
+      }
+
+      // Cancel Edit
+      restCancelEditBtn.addEventListener('click', resetForm);
+
+      function resetForm() {
+        editIncidentId.value = '';
+        restIncidentForm.reset();
+        formHeading.textContent = '1. POST /api/incidents (Create Record in MySQL)';
+        restSubmitBtn.textContent = '⚡ Execute POST (Insert to MySQL)';
+        restCancelEditBtn.style.display = 'none';
+      }
+
+      // Log to Inspector Box
+      function logResponse(status, data) {
+        responseStatusBadge.textContent = `HTTP ${status}`;
+        responseStatusBadge.className = status >= 200 && status < 300 ? 'badge badge-success' : 'badge badge-danger';
+        responseTimestamp.textContent = new Date().toLocaleTimeString();
+        responseJsonOutput.textContent = JSON.stringify(data, null, 2);
+      }
+
+      function escapeHTML(str) {
+        return String(str).replace(/[&<>'"]/g, tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag));
+      }
+
+      document.getElementById('btnCheckStatus').addEventListener('click', checkHealth);
+      document.getElementById('btnRefreshIncidents').addEventListener('click', fetchIncidents);
+
+      // Initial trigger
+      checkHealth();
+      fetchIncidents();
+    });
+  </script>
+
+</body>
+</html>

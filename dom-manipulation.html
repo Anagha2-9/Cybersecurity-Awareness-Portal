@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Practical 11: DOM Manipulation and Event Handling
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical 11: DOM Manipulation & Events | CyberAware Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="practicals.html" class="active highlight-btn">🧪 Examiner Hub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <header>
+      <span class="badge badge-info">Practical 11</span>
+      <h1 class="page-title">DOM Manipulation &amp; Event Handling</h1>
+      <p class="page-subtitle">
+        Demonstrates DOM tree traversal, creating and appending elements (<code>createElement</code>, <code>appendChild</code>), 
+        modifying styles/classes dynamically, and handling browser events (<code>input</code>, <code>click</code>).
+      </p>
+    </header>
+
+    <div class="two-col-grid">
+      
+      <!-- Feature 1: Password Strength Checker (input event) -->
+      <section class="card">
+        <h3>1. Real-Time Password Entropy Checker</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
+          Event: <code>input</code> listener dynamically recalculates entropy score and adjusts DOM element styles:
+        </p>
+
+        <div class="form-group" style="margin-top: 1rem;">
+          <label for="passwordInput">Test Password:</label>
+          <input type="text" id="passwordInput" class="form-control" placeholder="Type a password (e.g. S3cur3!2026)">
+        </div>
+
+        <div style="background-color: var(--bg-tertiary); height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 0.8rem;">
+          <div id="strengthMeter" style="height: 100%; width: 0%; background-color: #94a3b8; transition: width 0.3s ease, background-color 0.3s ease;"></div>
+        </div>
+
+        <div id="strengthFeedback" style="font-weight: 600; font-size: 0.9rem; color: #94a3b8;">
+          Enter a password to evaluate strength
+        </div>
+      </section>
+
+      <!-- Feature 2: Dynamic Node Creation & Deletion (createElement, appendChild, remove) -->
+      <section class="card">
+        <h3>2. Dynamic DOM Element Generation</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
+          Add/delete security reminders dynamically via <code>document.createElement()</code>:
+        </p>
+
+        <div class="flex-row" style="margin-top: 1rem;">
+          <input type="text" id="noteInput" class="form-control" placeholder="e.g. Enable 2FA on GitHub" style="flex: 1;">
+          <button id="addNoteBtn" class="btn btn-primary" type="button">+ Add Note</button>
+        </div>
+
+        <div id="notesContainer" style="margin-top: 1rem; max-height: 200px; overflow-y: auto;">
+          <p id="emptyNotesMsg" style="color: var(--text-muted); font-size: 0.85rem;">No security reminders added yet.</p>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Feature 3: Interactive Accordions (click event & classList.toggle) -->
+    <section class="card" style="margin-top: 1.5rem;">
+      <h3>3. Interactive FAQ Accordion (<code>click</code> Event &amp; <code>classList.toggle</code>)</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+        Click to toggle visibility of prevention guidelines:
+      </p>
+
+      <div class="accordion-item">
+        <button class="accordion-btn">How does Multi-Factor Authentication (MFA) defend against credential stuffing?</button>
+        <div class="accordion-content">
+          <p style="color: var(--text-muted); margin: 0.5rem 0;">
+            MFA mandates a second out-of-band verification token (e.g. authenticator app code or hardware FIDO key). Even if an attacker obtains password dumps from dark web forums, they cannot sign in without physical possession of the second factor.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-btn">Why are prepared statements the primary defense against SQL Injection?</button>
+        <div class="accordion-content">
+          <p style="color: var(--text-muted); margin: 0.5rem 0;">
+            Prepared statements pre-compile the SQL query structure on the database engine. User parameters are transmitted separately and treated strictly as literal data, preventing attacker input from altering query logic.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Cybersecurity Awareness and Learning Portal | Practical 11: DOM Manipulation &amp; Event Handling</p>
+  </footer>
+
+  <script src="js/dom-events.js"></script>
+
+  <!-- Inline Script for Dynamic Node Addition Demo -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const noteInput = document.getElementById('noteInput');
+      const addNoteBtn = document.getElementById('addNoteBtn');
+      const notesContainer = document.getElementById('notesContainer');
+      const emptyMsg = document.getElementById('emptyNotesMsg');
+
+      if (addNoteBtn && noteInput && notesContainer) {
+        addNoteBtn.addEventListener('click', () => {
+          const text = noteInput.value.trim();
+          if (!text) return;
+
+          if (emptyMsg) emptyMsg.style.display = 'none';
+
+          // Demonstrate document.createElement()
+          const noteDiv = document.createElement('div');
+          noteDiv.style.background = 'var(--bg-primary)';
+          noteDiv.style.border = '1px solid var(--accent-cyan)';
+          noteDiv.style.borderRadius = '6px';
+          noteDiv.style.padding = '0.6rem 0.8rem';
+          noteDiv.style.marginBottom = '0.5rem';
+          noteDiv.style.display = 'flex';
+          noteDiv.style.justifyContent = 'space-between';
+          noteDiv.style.alignItems = 'center';
+
+          noteDiv.innerHTML = `
+            <span>🛡️ ${text.replace(/[&<>'"]/g, '')}</span>
+            <button class="btn btn-outline" style="padding: 2px 8px; font-size: 0.75rem; border-color: var(--accent-red); color: var(--accent-red);">Delete</button>
+          `;
+
+          // Event to delete node
+          noteDiv.querySelector('button').addEventListener('click', () => {
+            noteDiv.remove(); // Demonstrate removeChild / remove
+            if (notesContainer.children.length === 1 && emptyMsg) {
+              emptyMsg.style.display = 'block';
+            }
+          });
+
+          // Demonstrate appendChild()
+          notesContainer.appendChild(noteDiv);
+          noteInput.value = '';
+        });
+      }
+    });
+  </script>
+
+  <footer class="site-footer">
+    <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+      <p>&copy; 2026 Cybersecurity Awareness and Learning Portal | Practical 11: DOM Manipulation &amp; Events</p>
+      <div>
+        <a href="practicals.html" class="footer-wtl-link" title="Web Technology Laboratory Practicals & Viva Guide">
+          🧪 WTL Practicals Hub
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Practical 08: React SPA using Functional Components and JSX
+       Practical 09: React Props, State, Hooks (useState, useEffect), Events & Conditional Rendering
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practicals 08 & 09: React SPA, Hooks & Components | CyberAware Portal</title>
+
+  <!-- External Stylesheets matching portal design -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <!-- React 18 & Babel via CDN for Zero-Config Setup -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="../index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../threats.html">Cyber Threats</a></li>
+          <li><a href="../learn.html">Learn</a></li>
+          <li><a href="../safety-tips.html">Safety Tips</a></li>
+          <li><a href="../resources.html">Resources</a></li>
+          <li><a href="../quiz.html">Quiz</a></li>
+          <li><a href="index.html" class="active highlight-btn">⚛️ React SPA</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- React Mount Point -->
+  <main class="container">
+    <div id="root">
+      <p style="color: var(--text-muted); text-align: center; padding: 2rem;">Loading React Application...</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom" style="border: 0; padding: 0;">
+      <p>&copy; 2026 Cybersecurity Awareness and Learning Portal | Practical 08 &amp; 09: React SPA &amp; Hooks</p>
+      <div>
+        <a href="../practicals.html" class="footer-wtl-link">🧪 WTL Practicals</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- React Component Code with JSX compiled in-browser via Babel -->
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // ------------------------------------------------------------------------
+    // Sub-Component 1: Header (Demonstrates Functional Component & Props)
+    // ------------------------------------------------------------------------
+    function Header({ title, subtitle, practicalBadge }) {
+      return (
+        <div style={{ marginBottom: '1.5rem' }}>
+          <span className="badge badge-info">{practicalBadge}</span>
+          <h1 className="page-title" style={{ marginTop: '0.4rem' }}>{title}</h1>
+          <p className="page-subtitle">{subtitle}</p>
+        </div>
+      );
+    }
+
+    // ------------------------------------------------------------------------
+    // Sub-Component 2: LiveThreatBanner (Demonstrates Conditional Rendering)
+    // ------------------------------------------------------------------------
+    function LiveThreatBanner({ advisory, isLoading }) {
+      // Conditional Rendering: Display loading state while advisory fetches
+      if (isLoading) {
+        return (
+          <div className="card" style={{ borderLeft: '4px solid var(--accent-cyan)' }}>
+            <p style={{ color: 'var(--text-muted)' }}>⏳ Initializing live threat advisory via React useEffect hook...</p>
+          </div>
+        );
+      }
+
+      // Conditional Rendering: If advisory exists, display alert
+      return (
+        <div className="card" style={{ borderLeft: '4px solid var(--accent-green)', background: 'rgba(16, 185, 129, 0.08)' }}>
+          <div className="flex-between">
+            <strong style={{ color: 'var(--accent-green)' }}>⚡ {advisory.headline}</strong>
+            <span className="badge badge-success">Loaded via useEffect</span>
+          </div>
+          <p style={{ margin: '0.4rem 0 0', fontSize: '0.9rem', color: 'var(--text-main)' }}>{advisory.details}</p>
+        </div>
+      );
+    }
+
+    // ------------------------------------------------------------------------
+    // Sub-Component 3: ScoreMeter (Demonstrates Props & Inline Dynamic Styles)
+    // ------------------------------------------------------------------------
+    function ScoreMeter({ score, total }) {
+      const percentage = Math.round((score / total) * 100);
+
+      // Conditional Styling based on score
+      let meterColor = '#ef4444'; // Red
+      let statusLabel = 'Critical Vulnerability Level';
+      if (percentage >= 80) {
+        meterColor = '#10b981'; // Green
+        statusLabel = 'Robust Cyber Posture';
+      } else if (percentage >= 50) {
+        meterColor = '#f59e0b'; // Yellow
+        statusLabel = 'Moderate Cyber Hygiene';
+      }
+
+      return (
+        <div className="card" style={{ borderLeft: `4px solid ${meterColor}` }}>
+          <div className="flex-between">
+            <h3>Hygiene Completion Meter</h3>
+            <span style={{ fontSize: '1.2rem', fontWeight: 'bold', color: meterColor }}>
+              {score} / {total} ({percentage}%)
+            </span>
+          </div>
+
+          <div style={{ backgroundColor: 'var(--bg-tertiary)', height: '12px', borderRadius: '6px', overflow: 'hidden', margin: '0.8rem 0' }}>
+            <div style={{
+              width: `${percentage}%`,
+              height: '100%',
+              backgroundColor: meterColor,
+              transition: 'width 0.4s ease, background-color 0.4s ease'
+            }} />
+          </div>
+
+          {/* Conditional Rendering: Warning message if score < 50% */}
+          {percentage < 50 ? (
+            <p style={{ color: 'var(--accent-red)', fontSize: '0.85rem' }}>
+              ⚠️ Action Required: Complete more hygiene checklist items to secure your systems.
+            </p>
+          ) : (
+            <p style={{ color: 'var(--accent-green)', fontSize: '0.85rem' }}>
+              ✅ Good progress! Keep remaining items verified.
+            </p>
+          )}
+        </div>
+      );
+    }
+
+    // ------------------------------------------------------------------------
+    // Sub-Component 4: ChecklistItem (Demonstrates Event Handling & Props)
+    // ------------------------------------------------------------------------
+    function ChecklistItem({ item, onToggle }) {
+      return (
+        <div
+          onClick={() => onToggle(item.id)}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '0.8rem 1rem',
+            margin: '0.5rem 0',
+            backgroundColor: item.completed ? 'rgba(16, 185, 129, 0.1)' : 'var(--bg-primary)',
+            border: item.completed ? '1px solid var(--accent-green)' : '1px solid var(--bg-tertiary)',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <input
+              type="checkbox"
+              checked={item.completed}
+              onChange={() => onToggle(item.id)}
+              style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+            />
+            <span style={{
+              textDecoration: item.completed ? 'line-through' : 'none',
+              color: item.completed ? 'var(--text-muted)' : 'var(--text-main)',
+              fontWeight: item.completed ? 'normal' : '500'
+            }}>
+              {item.title}
+            </span>
+          </div>
+          <span className="badge badge-info">{item.category}</span>
+        </div>
+      );
+    }
+
+    // ------------------------------------------------------------------------
+    // Main Root SPA Component: CyberHygieneApp
+    // ------------------------------------------------------------------------
+    function CyberHygieneApp() {
+      // 1. React State: Checklist items (useState)
+      const [items, setItems] = useState([
+        { id: 1, title: 'Enable Two-Factor Authentication (2FA) on email', category: 'Auth', completed: true },
+        { id: 2, title: 'Use unique 14+ character passphrases', category: 'Passwords', completed: false },
+        { id: 3, title: 'Verify offline 3-2-1 backup is updated', category: 'Backups', completed: false },
+        { id: 4, title: 'Update OS and browser to latest security patches', category: 'Updates', completed: true },
+        { id: 5, title: 'Review installed browser extensions and permissions', category: 'Browsing', completed: false },
+        { id: 6, title: 'Disable automatic Wi-Fi connection in public zones', category: 'Network', completed: false }
+      ]);
+
+      // 2. React State: Category Filter (useState)
+      const [selectedCategory, setSelectedCategory] = useState('All');
+
+      // 3. React State: Simulated Advisory & Loading State (useState)
+      const [advisory, setAdvisory] = useState(null);
+      const [isLoading, setIsLoading] = useState(true);
+
+      // ----------------------------------------------------------------------
+      // Hook: useEffect - Lifecycle & Side Effect Demonstration
+      // ----------------------------------------------------------------------
+      useEffect(() => {
+        // Side Effect 1: Simulate fetching live security advisory from server
+        const timer = setTimeout(() => {
+          setAdvisory({
+            headline: 'Active CERT Advisory: Update Chrome & Edge',
+            details: 'Zero-day vulnerability CVE-2026-9021 mitigated in latest upstream browser builds.'
+          });
+          setIsLoading(false);
+        }, 800);
+
+        // Side Effect 2: Update browser tab title dynamically
+        document.title = `Cyber Hygiene (${items.filter(i => i.completed).length}/${items.length}) | React SPA`;
+
+        // Cleanup function (demonstrates useEffect cleanup)
+        return () => clearTimeout(timer);
+      }, [items]); // Re-runs when items change
+
+      // Event Handler: Toggle item completion
+      const handleToggle = (id) => {
+        setItems(prev => prev.map(item => item.id === id ? { ...item, completed: !item.completed } : item));
+      };
+
+      // Filtered items based on state
+      const filteredItems = selectedCategory === 'All' 
+        ? items 
+        : items.filter(i => i.category === selectedCategory);
+
+      const completedCount = items.filter(item => item.completed).length;
+
+      return (
+        <div>
+          <Header
+            title="React Single Page Application (SPA)"
+            subtitle="Demonstrating Functional Components & JSX (Practical 08), plus Props, State (useState), Lifecycle Hooks (useEffect), Synthetic Events, and Conditional Rendering (Practical 09)."
+            practicalBadge="Practicals 08 & 09"
+          />
+
+          <!-- Live Banner loaded by useEffect -->
+          <LiveThreatBanner advisory={advisory} isLoading={isLoading} />
+
+          <ScoreMeter score={completedCount} total={items.length} />
+
+          <div className="card">
+            <div className="flex-between" style={{ marginBottom: '1rem' }}>
+              <div>
+                <h3>Personal Cyber Checklist</h3>
+                <small style={{ color: 'var(--text-muted)' }}>Showing {filteredItems.length} of {items.length} items</small>
+              </div>
+
+              <!-- Filter Buttons (Event Handling + State) -->
+              <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+                {['All', 'Auth', 'Passwords', 'Backups', 'Updates', 'Browsing', 'Network'].map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className="btn"
+                    style={{
+                      fontSize: '0.75rem',
+                      padding: '0.3rem 0.6rem',
+                      backgroundColor: selectedCategory === cat ? 'var(--accent-cyan)' : 'var(--bg-primary)',
+                      color: selectedCategory === cat ? 'var(--bg-primary)' : 'var(--text-muted)',
+                      border: '1px solid var(--bg-tertiary)'
+                    }}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <!-- List of items rendered with ChecklistItem component -->
+            <div>
+              {filteredItems.map(item => (
+                <ChecklistItem
+                  key={item.id}
+                  item={item}
+                  onToggle={handleToggle}
+                />
+              ))}
+            </div>
+
+            <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem' }}>
+              <button onClick={() => setItems(items.map(i => ({ ...i, completed: true })))} className="btn btn-outline" style={{ fontSize: '0.85rem' }}>
+                Mark All Complete
+              </button>
+              <button onClick={() => setItems(items.map(i => ({ ...i, completed: false })))} className="btn btn-outline" style={{ fontSize: '0.85rem' }}>
+                Reset All
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // Mount Root Component
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<CyberHygieneApp />);
+  </script>
+
+</body>
+</html>

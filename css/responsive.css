@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Cybersecurity Awareness and Learning Portal
+   Practical 04: Responsive Web Design using CSS Grid, Flexbox & Media Queries
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Grid Layout for Threat & Resource Cards
+   -------------------------------------------------------------------------- */
+.grid-container {
+  display: grid;
+  /* Auto-fitting responsive columns: minimum 300px, expands up to 1fr */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Two-column layout for dashboard & split forms */
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Three-column quick tip grid */
+.three-col-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   2. Flexbox Utilities
+   -------------------------------------------------------------------------- */
+.flex-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   3. Media Queries for Responsive Design (Desktop, Tablet, Mobile)
+   -------------------------------------------------------------------------- */
+
+/* Tablet & Smaller Laptops (max-width: 900px) */
+@media (max-width: 900px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1.8rem;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .two-col-grid {
+    grid-template-columns: 1fr; /* Collapse 2-column grid into single column */
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .page-title {
+    font-size: 1.7rem;
+  }
+}
+
+/* Mobile Devices (max-width: 600px) */
+@media (max-width: 600px) {
+  .site-header {
+    padding: 0.8rem 1rem;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    width: 100%;
+    gap: 0.3rem;
+    overflow-x: auto;
+    padding-bottom: 0.3rem;
+  }
+
+  .nav-links a {
+    white-space: nowrap;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.65rem;
+  }
+
+  .hero-card {
+    padding: 1.8rem 1.2rem;
+  }
+
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .hero-text {
+    font-size: 0.95rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+    margin: 1.2rem auto;
+  }
+
+  .grid-container,
+  .three-col-grid {
+    grid-template-columns: 1fr; /* Single column on mobile phones */
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1.3rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+}

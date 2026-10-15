@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Practical 06: JavaScript File Linking, Events and Array Functions
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical 06: JS Linking, Events & Array Functions | CyberAware Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="practicals.html" class="active highlight-btn">🧪 Examiner Hub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <header>
+      <span class="badge badge-info">Practical 06</span>
+      <h1 class="page-title">JavaScript Linking, Event Listeners &amp; Array Functions</h1>
+      <p class="page-subtitle">
+        Demonstrates external script linking (<code>&lt;script src="js/array-methods.js"&gt;</code>), 
+        DOM event handling (<code>click</code>), and functional JavaScript array methods: 
+        <code>filter()</code>, <code>map()</code>, <code>reduce()</code>, <code>find()</code>, <code>some()</code>, and <code>forEach()</code>.
+      </p>
+    </header>
+
+    <!-- Interactive Event Triggers Section -->
+    <section class="card">
+      <h3>Interactive Event Triggers</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.3rem;">
+        Click any button below to trigger a JavaScript event and execute the corresponding array method:
+      </p>
+
+      <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1rem;">
+        <button id="btnFilter" class="btn btn-primary">
+          🔍 filter(Critical)
+        </button>
+        <button id="btnMap" class="btn btn-outline">
+          🔄 map(Format Labels)
+        </button>
+        <button id="btnReduce" class="btn btn-success">
+          ➕ reduce(Sum Risk Score)
+        </button>
+        <button id="btnFind" class="btn btn-outline">
+          🎯 find(Database Target)
+        </button>
+        <button id="btnSomeEvery" class="btn btn-outline">
+          ❓ some() &amp; every()
+        </button>
+        <button id="btnReset" class="btn btn-outline" style="border-color: #94a3b8; color: #94a3b8;">
+          ↺ Reset All
+        </button>
+      </div>
+    </section>
+
+    <div class="two-col-grid">
+      
+      <!-- Console Display Output -->
+      <section class="card">
+        <h3>Method Execution Console</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+          Shows structured JSON output returned by the functional array method:
+        </p>
+        <div id="resultsConsole"></div>
+      </section>
+
+      <!-- Rendered Threat Cards via forEach() -->
+      <section class="card">
+        <h3>Rendered Items (<code>Array.forEach()</code>)</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.8rem;">
+          DOM elements dynamically generated from the filtered or master array:
+        </p>
+        <div id="renderedList"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Cybersecurity Awareness and Learning Portal | Practical 06: JS Linking, Events &amp; Array Functions</p>
+  </footer>
+
+  <!-- LINKING EXTERNAL JAVASCRIPT FILE -->
+  <script src="js/array-methods.js"></script>
+
+</body>
+</html>

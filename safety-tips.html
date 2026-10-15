@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Cybersecurity Awareness and Learning Portal
+       Practical 10: Fetch API & JSON Data (WTL Syllabus Preserved)
+       Practical Safety Checklists & Asynchronous Security Advisories
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Safety Tips & Checklists | CyberAware Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Site Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="safety-tips.html" class="active">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html" class="nav-quiz-btn">Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <header>
+      <h1 class="page-title">Practical Online <span class="highlight">Safety Tips &amp; Checklists</span></h1>
+      <p class="page-subtitle">
+        Actionable cyber safety practices for your daily digital activities. 
+        Browse essential hygiene checklists and explore live advisories loaded dynamically via asynchronous JavaScript.
+      </p>
+    </header>
+
+    <!-- LIVE ASYNCHRONOUS ADVISORY FEATURE (Powered by Fetch API & JSON) -->
+    <section class="card" style="border-left: 4px solid var(--accent-cyan);">
+      <div class="flex-between">
+        <div>
+          <h3>💡 Daily Cybersecurity Advisory of the Day</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.2rem;">
+            Fetched asynchronously using the modern <code>Fetch API</code> from local JSON data:
+          </p>
+        </div>
+        <button id="randomTipBtn" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">
+          🔄 Next Random Tip
+        </button>
+      </div>
+
+      <div id="randomTipBox" style="margin-top: 1.2rem;">
+        <p style="color: var(--text-muted);">Fetching advisory asynchronously...</p>
+      </div>
+    </section>
+
+    <!-- Three Category Safety Checklists -->
+    <div class="section-header">
+      <div>
+        <h2>Comprehensive Digital Safety Checklists</h2>
+        <p>Essential steps to verify your accounts, devices, and communications are secured.</p>
+      </div>
+    </div>
+
+    <div class="three-col-grid">
+      
+      <!-- Checklist 1: Account & Authentication -->
+      <section class="card">
+        <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🔐</div>
+        <h3>Account &amp; Auth</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+          Protecting credentials and access gates:
+        </p>
+        <ul style="margin-left: 1.2rem; line-height: 1.8; color: var(--text-main); font-size: 0.9rem;">
+          <li>Enable <strong>2FA/MFA</strong> on all major portals.</li>
+          <li>Use 14+ character unique passphrases.</li>
+          <li>Never share OTPs, PINs, or auth codes.</li>
+          <li>Check <a href="https://haveibeenpwned.com" target="_blank" rel="noopener" style="color: var(--accent-cyan);">HaveIBeenPwned</a> for past leaks.</li>
+          <li>Revoke unused third-party app permissions.</li>
+        </ul>
+      </section>
+
+      <!-- Checklist 2: Browsing & Wi-Fi -->
+      <section class="card">
+        <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🌐</div>
+        <h3>Browsing &amp; Wi-Fi</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+          Navigating the public web securely:
+        </p>
+        <ul style="margin-left: 1.2rem; line-height: 1.8; color: var(--text-main); font-size: 0.9rem;">
+          <li>Verify HTTPS padlock before logging in.</li>
+          <li>Use a trusted VPN on open public Wi-Fi.</li>
+          <li>Disable automatic Wi-Fi connections.</li>
+          <li>Hover over links to verify exact URLs.</li>
+          <li>Keep browser extensions to a minimum.</li>
+        </ul>
+      </section>
+
+      <!-- Checklist 3: Devices & Data -->
+      <section class="card">
+        <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">💻</div>
+        <h3>Devices &amp; Data</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+          Shielding hardware and personal files:
+        </p>
+        <ul style="margin-left: 1.2rem; line-height: 1.8; color: var(--text-main); font-size: 0.9rem;">
+          <li>Turn on automatic OS security updates.</li>
+          <li>Follow the 3-2-1 backup strategy.</li>
+          <li>Lock your screen whenever stepping away.</li>
+          <li>Encrypt laptops and external hard drives.</li>
+          <li>Avoid connecting unverified USB devices.</li>
+        </ul>
+      </section>
+
+    </div>
+
+    <!-- All Asynchronously Loaded Advisories (Fetch API demonstration) -->
+    <section class="card" style="margin-top: 2rem;">
+      <div class="flex-between">
+        <h3>📋 All Monitored Advisories (Loaded from JSON Dataset)</h3>
+        <span class="badge badge-success">Fetch API Connected</span>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;">
+        Parsed from raw JSON text into JavaScript Objects and rendered dynamically:
+      </p>
+
+      <div id="tipsContainer" style="margin-top: 1.2rem;">
+        <!-- Filled dynamically by fetch-tips.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4 style="color: var(--accent-cyan);">🛡️ CyberAware Portal</h4>
+        <p style="margin-top: 0.6rem; color: var(--text-muted); line-height: 1.6;">
+          An educational initiative dedicated to providing simple, actionable digital security practices for learners and everyday internet users.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Interactive Learning</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Safety Quiz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Interactive Tools</h4>
+        <ul class="footer-links">
+          <li><a href="resources.html">Password Strength Tester</a></li>
+          <li><a href="learn.html#phishing-sim">Phishing Simulator</a></li>
+          <li><a href="quiz.html">Assess Your Knowledge</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cybersecurity Awareness and Learning Portal. All rights reserved.</p>
+      <div>
+        <a href="practicals.html" class="footer-wtl-link" title="Web Technology Laboratory Practicals & Viva Guide">
+          🧪 WTL Practicals
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Practical 10 Fetch API -->
+  <script src="js/fetch-tips.js"></script>
+
+</body>
+</html>

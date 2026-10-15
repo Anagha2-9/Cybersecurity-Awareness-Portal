@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Cybersecurity Awareness and Learning Portal
+       Practical 02: Semantic HTML (WTL Syllabus Preserved)
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practical 02: Semantic HTML & Safety Pledge | CyberAware Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Semantic <header> Element -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <!-- Semantic <nav> Element -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html" class="active">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html" class="nav-quiz-btn">Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Semantic <main> Element -->
+  <main class="container">
+    <header>
+      <h1 class="page-title">Digital Citizen Cyber Safety Pledge</h1>
+      <p class="page-subtitle">
+        Constructed using modern Semantic HTML5 elements: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, 
+        <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, 
+        <code>&lt;aside&gt;</code>, <code>&lt;figure&gt;</code>, <code>&lt;figcaption&gt;</code>, and <code>&lt;footer&gt;</code>.
+      </p>
+    </header>
+
+    <div class="two-col-grid">
+      
+      <!-- Semantic <section> containing the Pledge Form -->
+      <section class="card">
+        <h2>Take the Cyber Hygiene Pledge</h2>
+        <p style="margin-bottom: 1.2rem; color: var(--text-muted); font-size: 0.95rem;">
+          Make an active commitment to uphold defensive cyber habits across your personal and academic accounts.
+        </p>
+
+        <form id="pledgeForm" novalidate>
+          <div class="form-group">
+            <label for="fullName">Full Name <span style="color: var(--accent-red);">*</span></label>
+            <input type="text" id="fullName" name="fullName" class="form-control" placeholder="e.g. Maya Lin" required>
+            <span id="fullNameError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Student / Faculty Email <span style="color: var(--accent-red);">*</span></label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="e.g. maya@college.edu" required>
+            <span id="emailError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">10-Digit Mobile Number <span style="color: var(--accent-red);">*</span></label>
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="e.g. 9876543210" required>
+            <span id="phoneError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="category">User Category</label>
+            <select id="category" name="category" class="form-control" required>
+              <option value="">-- Select Your Role --</option>
+              <option value="Student">College Student</option>
+              <option value="Faculty">Faculty Member</option>
+              <option value="Researcher">Cybersecurity Researcher</option>
+              <option value="Citizen">General User</option>
+            </select>
+            <span id="categoryError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="pledgeDate">Date of Commitment</label>
+            <input type="date" id="pledgeDate" name="pledgeDate" class="form-control" value="2026-10-12">
+          </div>
+
+          <div class="form-group">
+            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" id="agreePledge" name="agreePledge" style="margin-top: 0.3rem;" required>
+              <span style="font-size: 0.9rem; line-height: 1.5;">
+                I pledge to use strong passwords, enable two-factor authentication, verify sender domains, and keep my software patched.
+              </span>
+            </label>
+            <span id="pledgeError" class="error-message"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Digital Pledge Electronically &rarr;</button>
+        </form>
+
+        <div id="formStatus"></div>
+      </section>
+
+      <!-- Semantic <aside> providing supporting information -->
+      <aside class="card">
+        <!-- Semantic <article> inside <aside> -->
+        <article>
+          <h3 style="color: var(--accent-green);">Why Semantic HTML Matters</h3>
+          <p style="margin-top: 0.6rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+            Before HTML5, web developers used generic <code>&lt;div class="header"&gt;</code> and <code>&lt;div class="nav"&gt;</code>. 
+            Semantic elements explicitly communicate their informational role to assistive technology:
+          </p>
+
+          <ul style="margin-left: 1.2rem; margin-top: 0.8rem; line-height: 1.8; color: var(--text-main); font-size: 0.9rem;">
+            <li><strong>Accessibility:</strong> Screen readers announce landmarks like <code>&lt;nav&gt;</code> and <code>&lt;main&gt;</code>.</li>
+            <li><strong>SEO:</strong> Search engine spiders prioritize text inside <code>&lt;article&gt;</code> over boilerplate.</li>
+            <li><strong>Maintainability:</strong> Cleaner, more legible markup for development teams.</li>
+          </ul>
+
+          <!-- Semantic <figure> and <figcaption> -->
+          <figure style="margin-top: 1.5rem; background: var(--bg-primary); padding: 1rem; border-radius: 6px; border: 1px solid var(--bg-tertiary); text-align: center;">
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); text-align: left; background: #070d18; padding: 0.7rem; border-radius: 4px; line-height: 1.5;">
+              &lt;header&gt;<br>
+              &nbsp;&nbsp;&lt;nav&gt; Navigation &lt;/nav&gt;<br>
+              &lt;/header&gt;<br>
+              &lt;main&gt;<br>
+              &nbsp;&nbsp;&lt;section&gt; ... &lt;/section&gt;<br>
+              &nbsp;&nbsp;&lt;aside&gt; ... &lt;/aside&gt;<br>
+              &lt;/main&gt;<br>
+              &lt;footer&gt; ... &lt;/footer&gt;
+            </div>
+            <figcaption style="margin-top: 0.6rem; font-size: 0.8rem; color: var(--text-muted);">
+              Figure 2.1: Semantic Document Landmark Blueprint (&lt;figure&gt; &amp; &lt;figcaption&gt;)
+            </figcaption>
+          </figure>
+
+          <div style="margin-top: 1.2rem;">
+            <a href="learn.html#phishing-sim" class="btn btn-outline" style="width: 100%; text-align: center;">
+              🎯 Try Interactive Phishing Simulator &rarr;
+            </a>
+          </div>
+
+        </article>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Semantic <footer> -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4 style="color: var(--accent-cyan);">🛡️ CyberAware Portal</h4>
+        <p style="margin-top: 0.6rem; color: var(--text-muted); line-height: 1.6;">
+          Practical 02 Semantic HTML Demonstration within the Cybersecurity Awareness & Learning Portal.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Interactive Learning</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Safety Quiz</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Related Modules</h4>
+        <ul class="footer-links">
+          <li><a href="learn.html#phishing-sim">Phishing Simulator</a></li>
+          <li><a href="validation-demo.html">Form Validation Demo</a></li>
+          <li><a href="practicals.html">Examiner Hub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cybersecurity Awareness and Learning Portal. All rights reserved.</p>
+      <div>
+        <a href="practicals.html" class="footer-wtl-link" title="Web Technology Laboratory Practicals & Viva Guide">
+          🧪 WTL Practicals
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/validation.js"></script>
+</body>
+</html>

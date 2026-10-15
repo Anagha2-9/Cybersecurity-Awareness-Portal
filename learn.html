@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====================================================================
+       Cybersecurity Awareness and Learning Portal
+       Practical 02: Semantic HTML (WTL Syllabus Preserved)
+       Interactive Learning & Phishing Awareness Simulator
+       ==================================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Learning & Cyber Hygiene | CyberAware Portal</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Semantic <header> Element -->
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          🛡️ CyberAware <span class="logo-badge">Portal</span>
+        </a>
+      </div>
+      <!-- Semantic <nav> Element -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html" class="active">Learn</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html" class="nav-quiz-btn">Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Semantic <main> Element -->
+  <main class="container">
+    
+    <header>
+      <h1 class="page-title">Interactive Learning &amp; <span class="highlight">Cyber Hygiene</span></h1>
+      <p class="page-subtitle">
+        Hands-on educational tools: Practice identifying deceptive phishing emails in our safe simulator and commit to responsible cyber citizenship.
+      </p>
+    </header>
+
+    <!-- SECTION 1: Safe Interactive Phishing Awareness Simulator -->
+    <section class="card" id="phishing-sim" style="border-left: 4px solid var(--accent-red);">
+      <div class="flex-between">
+        <div>
+          <h2>🎯 Interactive Phishing Email Simulator</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.2rem;">
+            Click on the <strong>highlighted red-flag elements</strong> inside this mock email to reveal why they indicate a phishing attempt:
+          </p>
+        </div>
+        <span class="badge badge-danger">Safe Simulation</span>
+      </div>
+
+      <!-- Mock Email Interface -->
+      <div class="phishing-simulator">
+        <div class="email-header-bar">
+          <div>
+            <strong>From:</strong> 
+            <span class="redflag-target" data-flag="sender" title="Click to inspect this sender address">
+              "Payment Security Center" &lt;security-alert@paypa1-notice.com&gt; ⚠️
+            </span>
+          </div>
+          <div>
+            <strong>To:</strong> student.user@college.edu
+          </div>
+          <div>
+            <strong>Subject:</strong> 
+            <span class="redflag-target" data-flag="urgency" title="Click to inspect this urgency indicator">
+              URGENT: Immediate Account Suspension within 12 Hours! ⚠️
+            </span>
+          </div>
+          <div>
+            <strong>Date:</strong> 2026-10-12 09:14 AM
+          </div>
+        </div>
+
+        <div class="email-body-box">
+          <p>
+            <span class="redflag-target" data-flag="salutation" title="Click to inspect this greeting">
+              Dear Valued Member, ⚠️
+            </span>
+          </p>
+
+          <p style="margin-top: 0.8rem; line-height: 1.6;">
+            We detected abnormal login activity on your online wallet account from an unverified Russian IP address. 
+            For your immediate protection, your digital transactions have been restricted.
+          </p>
+
+          <p style="margin-top: 0.8rem; line-height: 1.6;">
+            To prevent permanent deactivation, you are strictly required to verify your password, date of birth, and identity credentials immediately:
+          </p>
+
+          <div style="text-align: center; margin: 1.5rem 0;">
+            <a href="javascript:void(0)" class="btn btn-primary redflag-target" data-flag="link" style="color: #090e1a; font-weight: bold;" title="Click to inspect this hyperlink destination">
+              👉 Click Here to Verify &amp; Unlock Account ⚠️
+            </a>
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #f87171; margin-top: 0.4rem;">
+              Actual Link Target: http://credential-harvest-login.ru/steal-passwords
+            </div>
+          </div>
+
+          <p style="font-size: 0.85rem; color: #94a3b8; border-top: 1px solid #334155; padding-top: 0.8rem;">
+            Notice: Failure to complete verification within 12 hours will result in permanent account termination and forfeiture of funds.
+          </p>
+        </div>
+
+        <!-- Live Explanation Panel for Simulator -->
+        <div id="phishingExplanationBox" class="redflag-explanation" style="display: none;">
+          <strong id="phishingFlagTitle" style="color: var(--accent-cyan);"></strong>
+          <p id="phishingFlagDesc" style="color: var(--text-main); margin-top: 0.3rem;"></p>
+        </div>
+      </div>
+
+      <div style="font-size: 0.85rem; color: var(--text-muted);">
+        💡 <strong>Key Takeaway:</strong> Legitimate institutions address you by your verified name, never demand urgent actions under threat of immediate termination, and always use official domains.
+      </div>
+    </section>
+
+    <!-- SECTION 2: Semantic HTML Layout with Form & Context (Practical 02) -->
+    <div class="two-col-grid" style="margin-top: 2rem;">
+      
+      <!-- Semantic <section> containing the Pledge Form -->
+      <section class="card">
+        <h2>Digital Citizen Cyber Hygiene Pledge</h2>
+        <p style="margin-bottom: 1.2rem; color: var(--text-muted); font-size: 0.95rem;">
+          Make an active commitment to uphold defensive cyber habits across your personal and academic accounts.
+        </p>
+
+        <!-- Semantic <form> with accessible form controls -->
+        <form id="pledgeForm" novalidate>
+          <div class="form-group">
+            <label for="fullName">Full Name <span style="color: var(--accent-red);">*</span></label>
+            <input type="text" id="fullName" name="fullName" class="form-control" placeholder="e.g. Maya Lin" required>
+            <span id="fullNameError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">College / Personal Email <span style="color: var(--accent-red);">*</span></label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="e.g. maya@college.edu" required>
+            <span id="emailError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Contact Mobile (10 Digits) <span style="color: var(--accent-red);">*</span></label>
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="e.g. 9876543210" required>
+            <span id="phoneError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="category">User Category</label>
+            <select id="category" name="category" class="form-control" required>
+              <option value="">-- Select Your Role --</option>
+              <option value="Student">College Student</option>
+              <option value="Faculty">Faculty Member</option>
+              <option value="Professional">IT / Security Professional</option>
+              <option value="Citizen">General Internet User</option>
+            </select>
+            <span id="categoryError" class="error-message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="pledgeDate">Date of Commitment</label>
+            <input type="date" id="pledgeDate" name="pledgeDate" class="form-control" value="2026-10-12">
+          </div>
+
+          <div class="form-group">
+            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" id="agreePledge" name="agreePledge" style="margin-top: 0.3rem;" required>
+              <span style="font-size: 0.9rem; line-height: 1.5;">
+                I pledge to use strong passwords, enable two-factor authentication, verify sender domains, and keep my software patched.
+              </span>
+            </label>
+            <span id="pledgeError" class="error-message"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Sign Digital Safety Pledge &rarr;
+          </button>
+        </form>
+
+        <div id="formStatus"></div>
+      </section>
+
+      <!-- Semantic <aside> providing contextual guidance -->
+      <aside class="card">
+        <!-- Semantic <article> -->
+        <article>
+          <h3 style="color: var(--accent-green);">Why Individual Cyber Hygiene Matters</h3>
+          <p style="margin-top: 0.6rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+            Over <strong>82%</strong> of institutional data breaches originate from human error—such as reusing passwords, falling for deceptive phishing emails, or plugging in unverified USB drives.
+          </p>
+
+          <hr style="border: 0; border-top: 1px solid var(--bg-tertiary); margin: 1.2rem 0;">
+
+          <h4>The 5 Core Principles:</h4>
+          <ul style="margin-left: 1.2rem; margin-top: 0.6rem; line-height: 1.8; color: var(--text-main); font-size: 0.9rem;">
+            <li><strong>Password Uniqueness:</strong> Never repeat passwords across critical accounts.</li>
+            <li><strong>Second-Factor Defense:</strong> Enable app-based 2FA on primary email and banking.</li>
+            <li><strong>Hyperlink Vigilance:</strong> Hover before clicking; verify sender identity.</li>
+            <li><strong>Offline Backups:</strong> Store critical coursework and records on detached media.</li>
+            <li><strong>Software Hygiene:</strong> Apply security patches as soon as they are published.</li>
+          </ul>
+
+          <!-- Semantic <figure> and <figcaption> -->
+          <figure style="margin-top: 1.5rem; background: var(--bg-primary); padding: 1rem; border-radius: 6px; border: 1px solid var(--bg-tertiary); text-align: center;">
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); text-align: left; background: #070d18; padding: 0.7rem; border-radius: 4px; line-height: 1.5;">
+              🛡️ Defense-in-Depth Model:<br>
+              &nbsp;&nbsp;[Layer 1: User Vigilance &amp; Verification]<br>
+              &nbsp;&nbsp;[Layer 2: MFA &amp; Credential Protection]<br>
+              &nbsp;&nbsp;[Layer 3: Endpoint Antivirus &amp; Patching]<br>
+              &nbsp;&nbsp;[Layer 4: Immutable Offline Backups]
+            </div>
+            <figcaption style="margin-top: 0.6rem; font-size: 0.8rem; color: var(--text-muted);">
+              Figure 2.1: Multi-Layered Cyber Defense Framework
+            </figcaption>
+          </figure>
+
+        </article>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <!-- Semantic <footer> -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4 style="color: var(--accent-cyan);">🛡️ CyberAware Portal</h4>
+        <p style="margin-top: 0.6rem; color: var(--text-muted); line-height: 1.6;">
+          Equipping students and beginners with essential cyber defense techniques to navigate the modern internet with confidence.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="threats.html">Cyber Threats</a></li>
+          <li><a href="learn.html">Interactive Learning</a></li>
+          <li><a href="safety-tips.html">Safety Tips</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="quiz.html">Safety Quiz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Interactive Learning</h4>
+        <ul class="footer-links">
+          <li><a href="learn.html#phishing-sim">Phishing Simulator</a></li>
+          <li><a href="resources.html">Password Entropy Test</a></li>
+          <li><a href="safety-tips.html">Advisories Feed</a></li>
+          <li><a href="quiz.html">Take the Quiz</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Cybersecurity Awareness and Learning Portal. All rights reserved.</p>
+      <div>
+        <a href="practicals.html" class="footer-wtl-link" title="Web Technology Laboratory Practicals & Viva Guide">
+          🧪 WTL Practicals
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Client-Side Form Validation (Practical 07) -->
+  <script src="js/validation.js"></script>
+
+  <!-- Script for Interactive Phishing Simulator -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const targets = document.querySelectorAll('.redflag-target');
+      const box     = document.getElementById('phishingExplanationBox');
+      const title   = document.getElementById('phishingFlagTitle');
+      const desc    = document.getElementById('phishingFlagDesc');
+
+      const explanations = {
+        sender: {
+          title: '🚨 Red Flag #1: Spoofed / Lookalike Sender Domain',
+          text: 'The email address says "paypa1-notice.com" with a digit "1" replacing the letter "l". Cybercriminals register typosquatted lookalike domains to mislead victims.'
+        },
+        urgency: {
+          title: '🚨 Red Flag #2: Artificial Urgency & Coercive Deadline',
+          text: 'Phishers create panic ("Suspension within 12 Hours!") to force you into acting rashly without stopping to verify whether the claim is genuine.'
+        },
+        salutation: {
+          title: '🚨 Red Flag #3: Generic Greeting ("Dear Valued Member")',
+          text: 'Legitimate services where you have an account address you by your registered first and last name, not vague mass-mailing salutations.'
+        },
+        link: {
+          title: '🚨 Red Flag #4: Mismatched & Malicious Hyperlink Destination',
+          text: 'While the button text promises to "Verify Account", hovering over the button reveals that the actual URL target points to a malicious credential-harvesting server: http://credential-harvest-login.ru.'
+        }
+      };
+
+      targets.forEach(target => {
+        target.addEventListener('click', (e) => {
+          e.preventDefault();
+          const flagKey = target.getAttribute('data-flag');
+          if (explanations[flagKey]) {
+            box.style.display = 'block';
+            title.textContent = explanations[flagKey].title;
+            desc.textContent  = explanations[flagKey].text;
+            box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
